@@ -1,8 +1,9 @@
-import "../../assets/style.css"
+
 import Navbar from "../../components/navbar"
+import { Icon } from '@iconify/react';
 function Header() {
     return(
-        <header className="text-white" style={{
+        <header className="text-white bg-cover bg-no-repeat" style={{
             backgroundImage: `url('/img/LANDING bg.png')`,
         }}>
             <Navbar />
@@ -18,12 +19,15 @@ function Header() {
                     <h1 className="font-homenaje text-6xl  mt-4">
                     Film, Acara TV, & Sebagainya 
                     </h1>
-                    <ul className="mt-4 flex text-white gap-x-6">
+                    <ul className="mt-4 flex text-white gap-x-6 font-imprima">
                         <li className="bg-white text-black px-1">Movie</li>
                         <li className="border px-1">HD</li>
                         <li>Action, Drama</li>
-                        <li>2023</li>
+                        <li className="flex items-center"><Icon icon='clarity:date-line' className="text-primary"/> <span className="ms-4">2023</span></li>
                     </ul>
+                    <button className="border-2 border-primary rounded-full bg-darkness mt-9 uppercase flex items-center p-4 hover:bg-primary transition">
+                    <Icon icon="ph:play-fill" /> <span className="ms-4">play now</span> 
+                    </button>
                     </div>
                 </div>
             </div>
