@@ -1,6 +1,8 @@
 import './assets/style.css';
 import Home from "./pages/home/home"
 import Movies from './pages/movies/movies';
+import TVShows from './pages/tvShows/tvshows';
+import Details from './pages/details/details';
 import './input.css'
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 
@@ -9,7 +11,9 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='movies' element={<Movies />}/>
+        <Route path='/movies' element={<Movies />}/>
+        <Route path='/tv-shows' element={<TVShows />} />
+        <Route path='/details' element={<Details />} />
       </Routes>
     </Router>
   );

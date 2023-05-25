@@ -9,5 +9,8 @@
     @apply w-[30px] h-[2px] my-2 block bg-secondary;
 }
 .nav-link {
-    @apply uppercase border-r border-gray px-9 cursor-pointer transition duration-300 ease-in-out hover:text-primary;
+    @apply uppercase border-r border-gray px-9 cursor-pointer transition duration-300 ease-in-out hover:text-primary block;
+}
+.nav-link-breakpoint {
+    @apply py-2 pl-3 pr-4 w-full md:border-0;
 }

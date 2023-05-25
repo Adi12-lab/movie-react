@@ -7,7 +7,16 @@ import { useEffect } from 'react'
 const Navbar = () => {
     function hamburgerClick() {
         const navMenu = document.querySelector('.nav-menu');
-        navMenu.classList.toggle('hidden')
+        const navLinks = document.querySelectorAll('.nav-link');
+        navMenu.classList.toggle('md:hidden')
+        navLinks.forEach(function(item) {
+            item.classList.toggle('nav-link-breakpoint')
+        })
+
+    }
+    function searchInput() {
+        const formSearch = document.querySelector(".form-search");
+        formSearch.classList.toggle("hidden");
     }
 
     return (
@@ -20,8 +29,8 @@ const Navbar = () => {
                         <h3 className='inline font-frenchCanon text-3xl'>Bajakmovie</h3>
                     </a>
 
-                    <div className='flex items-center px-4 hidden'>
-                        <button id='hamburger' type='button' className='block absolute right-4' onClick={hamburgerClick}>
+                    <div className='flex items-center px-4 hidden md:block'>
+                        <button id='hamburger' type='button' className='block' onClick={hamburgerClick}>
                             <span className='hamburger-line'></span>
                             <span className='hamburger-line'></span>
                             <span className='hamburger-line'></span>
@@ -30,14 +39,19 @@ const Navbar = () => {
 
                     {/* Yang bawah ini disembunyikan terlebih dahulu */}
 
-                    <nav className='grow flex items-center'>
+                    <nav className='grow flex items-center z-10 nav-menu md:hidden md:absolute md:right-4 md:top-20 md:w-2/3 md:max-w-lg md:rounded-lg md:py-8 md:bg-dark md:flex-col '>
                         <NavLink to='/' className={({ isActive }) => `nav-link ${isActive ? 'text-primary' : ''}`}>Home</NavLink>
                         <NavLink to='/movies' className={({ isActive }) => `nav-link ${isActive ? 'text-primary' : ''}`}>Movies</NavLink>
-                        <NavLink to='/tv' className={({ isActive }) => `nav-link ${isActive ? 'text-primary' : ''}`}>Tv Show</NavLink>
+                        <NavLink to='/tv-shows' className={({ isActive }) => `nav-link ${isActive ? 'text-primary' : ''}`}>Tv Show</NavLink>
 
-                        <button className='border-r border-gray px-9 cursor-pointer ms-auto'>
+                        <button className='border-r border-gray px-9 cursor-pointer ms-auto' id='search' onClick={searchInput}>
                             <Search />
                         </button>
+                        {/* Span search */}
+                        <span className='bg-dark p-4 font-homenaje rounded-md absolute right-5 top-14 hidden form-search md:top-64'>
+                            <input className='border-2 border-secondary bg-dark px-4 py-2 uppercase w-72 tracking-[2px]' placeholder='Cari film kamu'/>
+                            <button className='bg-primary px-4 py-2 text-black font-bold uppercase ms-4 tracking-[2px]'>cari</button>
+                        </span>
                         <button className='border-2 border-secondary w-24 p-2 rounded-full uppercase ms-6 cursor-pointer font-imprima'>
                             sign in
                         </button>
