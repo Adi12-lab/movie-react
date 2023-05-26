@@ -1,20 +1,9 @@
 import Card from '../../components/card'
 import Test2 from "../../assets/test2.jpg"
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import Test3 from "../../assets/test3.png"
 import '@splidejs/react-splide/css';
 function Main() {
-    const splideOptions = {
-        type: 'loop',
-        perPage: 6,
-        arrows: false,
-        perMove: 1,
-        focus: 'center',
-        padding: {
-            right: '16%', // Atur padding kanan sesuai kebutuhan
-          },
-        gap: '1rem',
-    };
+  
     return (
         <main>
             <section className="bg-no-repeat bg-cover bg-left-top py-24 text-white" style={{

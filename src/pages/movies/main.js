@@ -1,7 +1,20 @@
 import Navbar from "../../components/navbar"
 import Card from "../../components/card"
 import { Splide, SplideSlide } from "@splidejs/react-splide"
+import { useEffect, useState } from "react"
+import { getMovieTopRated, getMoviePopular } from "../../api"
 const Main = () => {
+    const [topRatedMovies, setTopRatedMovies] = useState([]);
+    const [popularMovies, setPopularMovies] = useState([])
+
+    useEffect(() => {
+        getMovieTopRated().then((result) => {
+            setTopRatedMovies(result)
+        })
+        getMoviePopular().then((result) => {
+            setPopularMovies(result)
+        })
+    }, [])
     return (
         <main className="text-white bg-cover bg-no-repeat pb-14" style={{
             backgroundImage: `url('/img/mainBackground1.jpg')`,
@@ -9,7 +22,7 @@ const Main = () => {
             <Navbar />
             <div className="container">
                 <div className="flex flex-wrap mt-16">
-                    <h3 className="font-homenaje text-3xl border-l-4 border-secondary pl-6 inline-block">Film terbaru</h3>
+                    <h3 className="font-homenaje text-3xl border-l-4 border-secondary pl-6 inline-block">Film terbaik</h3>
                 </div>
                 <div className="mt-14 cursor-grabbing">
                     <Splide options={{
@@ -19,26 +32,15 @@ const Main = () => {
                         perMove: 1,
                         gap: '3rem',
                     }}>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
+                        {topRatedMovies.map(function (movie, i) {
+                            return (
+                                <SplideSlide>
+                                    <Card title={movie.title} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} language={movie.original_language} />
+                                </SplideSlide>
+                            )
+                        })
+                        }
                     </Splide>
-                    
                 </div>
                 <div className="flex flex-wrap mt-16">
                     <h3 className="font-homenaje text-3xl border-l-4 border-secondary pl-6 inline-block">Film terpopuler</h3>
@@ -51,26 +53,16 @@ const Main = () => {
                         perMove: 1,
                         gap: '3rem',
                     }}>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
+                        {popularMovies.map(function (movie, i) {
+                            return (
+                                <SplideSlide>
+                                    <Card title={movie.title} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} language={movie.original_language}/>
+                                </SplideSlide>
+                            )
+                        })
+                        }
                     </Splide>
-                    
+
                 </div>
             </div>
         </main>

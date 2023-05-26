@@ -1,26 +1,34 @@
 import Card from '../../components/card'
-import Test2 from "../../assets/test2.jpg"
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import Test3 from "../../assets/test3.png"
+import { getMovieUpcoming, getMovieTrending, getTvAiring } from '../../api';
+import { useEffect, useState } from 'react';
+import Marvel from "../../assets/marvel.png"
+import Disney from "../../assets/disney.png"
+import Dc from "../../assets/dc.png"
+import Starwars from "../../assets/starwars.png"
 import '@splidejs/react-splide/css';
+
 function Main() {
-    const splideOptions = {
-        type: 'loop',
-        perPage: 6,
-        arrows: false,
-        perMove: 1,
-        focus: 'center',
-        padding: {
-            right: '16%', // Atur padding kanan sesuai kebutuhan
-          },
-        gap: '1rem',
-    };
+    const [upcomingMovies, setUpcomingMovies] = useState([]);
+    const [trendingMovies, setTrendingMovies] = useState([]);
+    const [airingTv, setAiringTv] = useState([]);
+    useEffect(() => {
+        getMovieUpcoming().then((result) => {
+            setUpcomingMovies(result)
+        })
+        getMovieTrending().then((result) => {
+            setTrendingMovies(result)
+        })
+        getTvAiring().then((result) => {
+            setAiringTv(result)
+        })
+    }, [])
     return (
         <main>
-            <section className="bg-no-repeat h-[1100px] bg-cover bg-left-top pt-24 text-white" style={{
-            backgroundImage: `url('/img/mainBackground1.jpg')`,
-        }}>
-                <div className="container h-60">
+            <section className="bg-no-repeat  bg-cover bg-left-top pt-24 pb-16 text-white" style={{
+                backgroundImage: `url('/img/mainBackground1.jpg')`,
+            }}>
+                <div className="container">
                     <div className="flex flex-wrap">
                         <h6 className="uppercase text-primary">online streaming</h6>
                     </div>
@@ -33,60 +41,41 @@ function Main() {
                         </ul>
                     </div>
                     <div className='mt-16 cursor-grabbing'>
-                    <Splide options={{
-                        fixedWidth: '300px',
-                        arrows: false,
-                        pagination: false,
-                        perMove: 1,
-                        gap: '3rem',
-                    }}>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Card />
-                        </SplideSlide>
-                    </Splide>
-                    
+                        <Splide options={{
+                            fixedWidth: '300px',
+                            arrows: false,
+                            pagination: false,
+                            perMove: 1,
+                            gap: '3rem',
+                        }}>
+                            {upcomingMovies.map(function (movie, i) {
+                                return(
+                                    <SplideSlide>
+                                        <Card title={movie.title} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} language={movie.original_language}/>
+                                    </SplideSlide>
+                                )
+                            })
+                            }
+                        </Splide>
+
                     </div>
                     <div className='mt-14 cursor-grabbing'>
                         <Splide options={{
-                            type: 'loop',
                             fixedWidth: '207px',
                             arrows: false,
                             perMove: 1,
                             gap: '.5rem',
+                            pagination: false,
                         }}>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
+                            {trendingMovies.map(function(movie, i) {
+                                return (
+                                    <SplideSlide>
+                                        <img src={`${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path}`} alt={movie.title}/>
+                                    </SplideSlide>
+                                )
+                            })
+
+                            }
                         </Splide>
                     </div>
 
@@ -96,38 +85,30 @@ function Main() {
             <section className='bg-[#1E1E1E] pt-16'>
                 <div className='container'>
                     <div className='flex flex-wrap justify-evenly'>
-                        <img src={Test3} />
-                        <img src={Test3} />
-                        <img src={Test3} />
-                        <img src={Test3} />
+                        <img src={Marvel} alt='marvel'/>
+                        <img src={Disney} alt='disney'/>
+                        <img src={Dc} alt='dc'/>
+                        <img src={Starwars} alt='starwars' />
                     </div>
 
                     <div className='mt-14 cursor-grabbing'>
-                    <Splide options={{
+                        <Splide options={{
                             type: 'loop',
                             fixedWidth: '207px',
                             arrows: false,
                             perMove: 1,
                             gap: '.5rem',
+                            pagination: false
                         }}>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
-                            <SplideSlide>
-                                <img src={Test2} />
-                            </SplideSlide>
+                            {airingTv.map((tv, i) => {
+                                return(
+                                    <SplideSlide>
+                                        <img src={`${process.env.REACT_APP_BASEIMGURL}/${tv.poster_path}`} alt={tv.name}/>
+                                    </SplideSlide>
+                                )
+                            })
+
+                            }
                         </Splide>
                     </div>
                 </div>

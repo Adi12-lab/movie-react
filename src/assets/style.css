@@ -1013,6 +1013,10 @@ video {
   text-align: center;
 }
 
+.text-end {
+  text-align: end;
+}
+
 .font-frenchCanon {
   font-family: IM FELL French Canon, sans-serif;
 }
@@ -1229,18 +1233,9 @@ video {
   color: rgb(204 255 0 / var(--tw-text-opacity));
 }
 
-.focus\:border-secondary:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(176 220 0 / var(--tw-border-opacity));
-}
-
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.focus\:outline-secondary:focus {
-  outline-color: #B0DC00;
 }
 
 @media (max-width: 767px) {
