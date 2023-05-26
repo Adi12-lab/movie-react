@@ -1,7 +1,6 @@
 import Vector from '../assets/Vector.png'
 import { Search } from 'feather-icons-react'
 import { NavLink } from 'react-router-dom'
-import { useEffect } from 'react'
 
 
 const Navbar = () => {
@@ -52,9 +51,9 @@ const Navbar = () => {
                             <input className='border-2 border-secondary bg-dark px-4 py-2 uppercase w-72 tracking-[2px]' placeholder='Cari film kamu'/>
                             <button className='bg-primary px-4 py-2 text-black font-bold uppercase ms-4 tracking-[2px]'>cari</button>
                         </span>
-                        <button className='border-2 border-secondary w-24 p-2 rounded-full uppercase ms-6 cursor-pointer font-imprima'>
+                        <NavLink to='/login' className='border-2 border-secondary w-24 p-2 rounded-full uppercase ms-6 cursor-pointer font-imprima text-center'>
                             sign in
-                        </button>
+                        </NavLink>
                     </nav>
 
                 </div>

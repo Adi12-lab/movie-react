@@ -1,13 +1,14 @@
 import Navbar from "../../components/navbar"
 import Thumbnail from '../../assets/thumbnail.png'
+import BackButton from "../../components/backButton";
 import { Icon } from '@iconify/react';
+
 const Header = () => {
     return (
         <header className='w-1440 bg-no-repeat bg-cover text-white backdrop-header bg-darkness pb-24'>
             <Navbar />
             <div className="container">
-                <span className="text-lg flex items-center font-imprima"><Icon icon="teenyicons:arrow-left-outline" className="text-4xl" /> <p className="ms-3">Back</p></span>
-
+                <BackButton />
                 <div className="flex flex-wrap mt-20">
                     <img src={Thumbnail} />
 
