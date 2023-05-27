@@ -6,6 +6,7 @@ import Marvel from "../../assets/marvel.png"
 import Disney from "../../assets/disney.png"
 import Dc from "../../assets/dc.png"
 import Starwars from "../../assets/starwars.png"
+import { NavLink } from 'react-router-dom';
 import '@splidejs/react-splide/css';
 
 function Main() {
@@ -51,7 +52,9 @@ function Main() {
                             {upcomingMovies.map(function (movie, i) {
                                 return(
                                     <SplideSlide>
-                                        <Card title={movie.title} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} language={movie.original_language}/>
+                                        <NavLink to={`/movies/details/${movie.id}`}>
+                                            <Card title={movie.title} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} language={movie.original_language}/>
+                                        </NavLink>
                                     </SplideSlide>
                                 )
                             })
@@ -70,7 +73,9 @@ function Main() {
                             {trendingMovies.map(function(movie, i) {
                                 return (
                                     <SplideSlide>
-                                        <img src={`${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path}`} alt={movie.title}/>
+                                        <NavLink to={`/movies/details/${movie.id}`}>
+                                            <img src={`${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path}`} alt={movie.title}/>
+                                        </NavLink>
                                     </SplideSlide>
                                 )
                             })
@@ -103,7 +108,9 @@ function Main() {
                             {airingTv.map((tv, i) => {
                                 return(
                                     <SplideSlide>
-                                        <img src={`${process.env.REACT_APP_BASEIMGURL}/${tv.poster_path}`} alt={tv.name}/>
+                                        <NavLink to={`/tv-shows/details/${tv.id}`}>
+                                            <img src={`${process.env.REACT_APP_BASEIMGURL}/${tv.poster_path}`} alt={tv.name}/>
+                                        </NavLink>
                                     </SplideSlide>
                                 )
                             })

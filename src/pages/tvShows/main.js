@@ -3,6 +3,7 @@ import Card from "../../components/card"
 import { Splide, SplideSlide } from "@splidejs/react-splide"
 import { useEffect, useState } from "react"
 import { getTvPopular, getTvTopRated } from "../../api"
+import { NavLink } from "react-router-dom"
 const Main = () => {
     const [topRatedTv, setTopRatedTvs] = useState([]);
     const [popularTv, setPopularTvs] = useState([])
@@ -35,7 +36,9 @@ const Main = () => {
                          {topRatedTv.map(function (tv, i) {
                             return (
                                 <SplideSlide>
-                                    <Card title={tv.name} poster_path={tv.poster_path} release_date={tv.release_date} vote_average={tv.vote_average} language={tv.origin_country[0]}/>
+                                    <NavLink to={`/tv-shows/details/${tv.id}`}>
+                                        <Card title={tv.name} poster_path={tv.poster_path} release_date={tv.release_date} vote_average={tv.vote_average} language={tv.origin_country[0]}/>
+                                    </NavLink>
                                 </SplideSlide>
                             )
                         })
@@ -57,7 +60,10 @@ const Main = () => {
                          {popularTv.map(function (tv, i) {
                             return (
                                 <SplideSlide>
-                                    <Card title={tv.name} poster_path={tv.poster_path} release_date={tv.release_date} vote_average={tv.vote_average} language={tv.origin_country[0]} />
+                                    <NavLink to={`/tv-shows/details/${tv.id}`}>
+                                        <Card title={tv.name} poster_path={tv.poster_path} release_date={tv.release_date} vote_average={tv.vote_average} language={tv.origin_country[0]} />
+
+                                    </NavLink>
                                 </SplideSlide>
                             )
                         })

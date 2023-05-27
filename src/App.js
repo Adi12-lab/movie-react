@@ -2,7 +2,8 @@ import './assets/style.css';
 import Home from "./pages/home/home"
 import Movies from './pages/movies/movies';
 import TVShows from './pages/tvShows/tvshows';
-import Details from './pages/details/details';
+import MovieDetails from './pages/details/movie/details';
+import TvDetails from './pages/details/tvShows/details';
 import Login from './pages/login/login';
 import './input.css'
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
@@ -14,7 +15,8 @@ function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/movies' element={<Movies />}/>
         <Route path='/tv-shows' element={<TVShows />} />
-        <Route path='/details' element={<Details />} />
+        <Route path='/movies/details/:id' element={<MovieDetails />} />
+        <Route path='/tv-shows/details/:id' element={<TvDetails />} />
         <Route path='/login' element={<Login />}/>
       </Routes>
     </Router>

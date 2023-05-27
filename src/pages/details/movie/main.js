@@ -1,8 +1,8 @@
-import Card from '../../components/card'
-import Test2 from "../../assets/test2.jpg"
+import Card from '../../../components/card'
+import Test2 from "../../../assets/test2.jpg"
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-function Main() {
+function MainMovie() {
   
     return (
         <main>
@@ -107,4 +107,4 @@ function Main() {
     )
 }
 
-export default Main
+export default MainMovie

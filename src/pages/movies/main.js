@@ -3,6 +3,7 @@ import Card from "../../components/card"
 import { Splide, SplideSlide } from "@splidejs/react-splide"
 import { useEffect, useState } from "react"
 import { getMovieTopRated, getMoviePopular } from "../../api"
+import { NavLink } from "react-router-dom"
 const Main = () => {
     const [topRatedMovies, setTopRatedMovies] = useState([]);
     const [popularMovies, setPopularMovies] = useState([])
@@ -35,7 +36,9 @@ const Main = () => {
                         {topRatedMovies.map(function (movie, i) {
                             return (
                                 <SplideSlide>
-                                    <Card title={movie.title} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} language={movie.original_language} />
+                                    <NavLink to={`/movies/details/${movie.id}`}>
+                                        <Card title={movie.title} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} language={movie.original_language} />
+                                    </NavLink>
                                 </SplideSlide>
                             )
                         })
@@ -56,7 +59,9 @@ const Main = () => {
                         {popularMovies.map(function (movie, i) {
                             return (
                                 <SplideSlide>
-                                    <Card title={movie.title} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} language={movie.original_language}/>
+                                    <NavLink to={`/movies/details/${movie.id}`}>
+                                        <Card title={movie.title} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} language={movie.original_language}/>
+                                    </NavLink>
                                 </SplideSlide>
                             )
                         })

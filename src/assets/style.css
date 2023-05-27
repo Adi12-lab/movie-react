@@ -719,14 +719,6 @@ video {
   height: 2.5rem;
 }
 
-.h-60 {
-  height: 15rem;
-}
-
-.h-\[1100px\] {
-  height: 1100px;
-}
-
 .h-\[112px\] {
   height: 112px;
 }
@@ -989,6 +981,10 @@ video {
   padding-bottom: 3.5rem;
 }
 
+.pb-16 {
+  padding-bottom: 4rem;
+}
+
 .pb-24 {
   padding-bottom: 6rem;
 }
@@ -1011,10 +1007,6 @@ video {
 
 .text-center {
   text-align: center;
-}
-
-.text-end {
-  text-align: end;
 }
 
 .font-frenchCanon {
