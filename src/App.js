@@ -5,6 +5,7 @@ import TVShows from './pages/tvShows/tvshows';
 import MovieDetails from './pages/details/movie/details';
 import TvDetails from './pages/details/tvShows/details';
 import Login from './pages/login/login';
+import Search from './pages/search';
 import './input.css'
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/tv-shows' element={<TVShows />} />
         <Route path='/movies/details/:id' element={<MovieDetails />} />
         <Route path='/tv-shows/details/:id' element={<TvDetails />} />
+        <Route path='/search'element={<Search />} />
         <Route path='/login' element={<Login />}/>
       </Routes>
     </Router>

@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 const Card = (props) => {
     return (
         <>
-            <article className="text-white font-imprima">
+            <article className={`text-white font-imprima w-[300px]`}>
                     <img src={`${process.env.REACT_APP_BASEIMGURL}/${props.poster_path}`} alt ={props.title} className="mb-7"/>
                 <div className="flex flex-wrap text-lg">
                     <h6>{props.title}</h6>

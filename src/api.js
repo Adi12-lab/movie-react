@@ -44,3 +44,12 @@ export const getTvDetails = async(id) => {
     const tv = await axios.get(`${baseUrl}/tv/${id}?api_key=${apiKey}`)
     return tv.data
 }
+
+// Search
+
+export const searchMulti = async (query) => {
+    const results = await axios.get(`${baseUrl}/search/multi?query=${query}&api_key=${apiKey}`)
+    return results.data.results.filter((item) => {
+        return item.media_type !== 'person' && item.poster_path !== null
+    })
+}

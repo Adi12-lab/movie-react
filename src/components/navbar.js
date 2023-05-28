@@ -1,9 +1,12 @@
 import Vector from '../assets/Vector.png'
 import { Search } from 'feather-icons-react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { useRef } from 'react'
 
 
 const Navbar = () => {
+    const dataSearch = useRef(null)
+    const navigate = useNavigate()
     function hamburgerClick() {
         const navMenu = document.querySelector('.nav-menu');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -17,6 +20,10 @@ const Navbar = () => {
         const formSearch = document.querySelector(".form-search");
         formSearch.classList.toggle("hidden");
     }
+    function handleSearchClick() {
+        navigate(`/search?q=${dataSearch.current.value}`)
+    }
+    
 
     return (
         <section className='bg-transparent w-full flex items-center z-10'>
@@ -24,7 +31,7 @@ const Navbar = () => {
                 <div className='flex items-center justify-between relative'>
 
                     <a className='flex items-center grow'>
-                        <img src={Vector} className='inline-block w-10 h-10' />
+                        <img src={Vector} className='inline-block w-10 h-10' alt='brand'/>
                         <h3 className='inline font-frenchCanon text-3xl'>Bajakmovie</h3>
                     </a>
 
@@ -46,10 +53,11 @@ const Navbar = () => {
                         <button className='border-r border-gray px-9 cursor-pointer ms-auto' id='search' onClick={searchInput}>
                             <Search />
                         </button>
+
                         {/* Span search */}
-                        <span className='bg-dark p-4 font-homenaje rounded-md absolute right-5 top-14 hidden form-search md:top-64'>
-                            <input className='border-2 border-secondary bg-dark px-4 py-2 uppercase w-72 tracking-[2px]' placeholder='Cari film kamu'/>
-                            <button className='bg-primary px-4 py-2 text-black font-bold uppercase ms-4 tracking-[2px]'>cari</button>
+                        <span className='bg-dark p-4 font-imprima rounded-md absolute right-5 top-14 hidden form-search md:top-64'>
+                            <input className='border-2 border-secondary bg-dark px-4 py-2 uppercase w-72 tracking-[2px]' ref={dataSearch} placeholder='Cari film kamu'/>
+                            <button className='bg-primary px-4 py-2 text-black font-bold uppercase ms-4 tracking-[2px]' onClick={handleSearchClick}>cari</button>
                         </span>
                         <NavLink to='/login' className='border-2 border-secondary w-24 p-2 rounded-full uppercase ms-6 cursor-pointer font-imprima text-center'>
                             sign in

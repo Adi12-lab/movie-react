@@ -37,7 +37,7 @@ const Main = () => {
                             return (
                                 <SplideSlide>
                                     <NavLink to={`/tv-shows/details/${tv.id}`}>
-                                        <Card title={tv.name} poster_path={tv.poster_path} release_date={tv.release_date} vote_average={tv.vote_average} language={tv.origin_country[0]}/>
+                                        <Card title={tv.name} poster_path={tv.poster_path} vote_average={tv.vote_average} release_date={tv.first_air_date} language={tv.origin_country[0]}/>
                                     </NavLink>
                                 </SplideSlide>
                             )
@@ -61,7 +61,7 @@ const Main = () => {
                             return (
                                 <SplideSlide>
                                     <NavLink to={`/tv-shows/details/${tv.id}`}>
-                                        <Card title={tv.name} poster_path={tv.poster_path} release_date={tv.release_date} vote_average={tv.vote_average} language={tv.origin_country[0]} />
+                                        <Card title={tv.name} poster_path={tv.poster_path} release_date={tv.first_air_date} vote_average={tv.vote_average} language={tv.origin_country[0]} />
 
                                     </NavLink>
                                 </SplideSlide>
