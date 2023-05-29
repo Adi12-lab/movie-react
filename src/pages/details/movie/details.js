@@ -3,19 +3,23 @@ import MainMovie from './main'
 import Footer from '../../../components/footer'
 import { useParams } from "react-router-dom"
 import { useEffect, useState} from "react"
-import { getMovieDetails} from "../../../api"
+import { getMovieDetails, getMovieImages} from "../../../api"
 import { formatNumber } from "../../../helper"
 const MovieDetails = () => {
     const {id} = useParams()
     const [detailMovie, setDetailMovie] = useState([])
+    const [imageMovie, setImageMovie] = useState([]) 
     
     useEffect(() => {
         getMovieDetails(id).then((result) => {
             setDetailMovie(result)
-        
-    })
+        })
+        getMovieImages(id).then((result) => {
+            setImageMovie(result)
+        })
         // getMovieDetails(id)
     }, [])
+    console.log(imageMovie)
     const baseImgUrl = process.env.REACT_APP_BASEIMGURL;
     
         return(
@@ -31,7 +35,7 @@ const MovieDetails = () => {
                     release_date={detailMovie.release_date}
                     rate={formatNumber(detailMovie.vote_average)}
                     />
-                <MainMovie />
+                <MainMovie images={imageMovie}/>
                 <Footer />
     
             </>

@@ -3,7 +3,7 @@ import Navbar from "../../components/navbar"
 import { Icon } from '@iconify/react';
 function Header() {
     return(
-        <header className="text-white bg-cover bg-no-repeat" style={{
+        <header className="text-white bg-cover bg-no-repeat bg-center" style={{
             backgroundImage: `url('/img/LANDING bg.png')`,
         }}>
             <Navbar />

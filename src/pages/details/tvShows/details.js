@@ -14,6 +14,7 @@ const TvDetails = () => {
             setDetailTv(result)
         })
     }, [])
+    const duration = detailTv.episode_run_time && detailTv.episode_run_time[0];
     const baseImgUrl = process.env.REACT_APP_BASEIMGURL;
     return(
         <>
@@ -21,7 +22,7 @@ const TvDetails = () => {
             name={detailTv.name}
             image={`${baseImgUrl}/${detailTv.poster_path}`}
             overview={detailTv.overview}
-            duration={detailTv.episode_run_time}
+            duration={duration}
             genres={detailTv.genres}
             release_date={detailTv.first_air_date}
             rate={formatNumber(detailTv.vote_average)}

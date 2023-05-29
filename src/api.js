@@ -26,6 +26,10 @@ export const getMovieDetails = async (id) => {
     const movie = await axios.get(`${baseUrl}/movie/${id}?api_key=${apiKey}`)
     return movie.data
 }
+export const getMovieImages = async (id) => {
+    const images = await axios.get(`${baseUrl}/movie/${id}/images?api_key=${apiKey}`)
+    return images.data.backdrops
+}
 
 // Acara Tv
 export const getTvPopular = async () => {

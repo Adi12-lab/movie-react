@@ -1,16 +1,16 @@
-import Navbar from "../../../components/navbar";
-import BackButton from "../../../components/backButton";
+import Navbar from "../../components/navbar";
+import BackButton from "../../components/backButton";
 import { Icon } from '@iconify/react';
 
-function HeaderMovie (props)  {
+function Header (props)  {
     const genres = props.genres || []; // Tetapkan genres sebagai array kosong jika props.genres tidak terdefinisi
 
     return (
-        <header className='w-1440 bg-no-repeat bg-cover text-white backdrop-header pb-24' style={{backgroundImage: `url('/img/darkBackground.jpg')`}}>
+        <header className='w-1440 bg-no-repeat bg-cover text-white backdrop-header bg-darkness pb-24' >
             <Navbar />
             <div className="container">
-                <BackButton className='mt-6'/>
-                <div className="flex flex-wrap gap-x-12 mt-12">
+                <BackButton />
+                <div className="flex flex-wrap mt-20 gap-x-12">
                     <img src={props.image} alt={props.title} className="w-[315px]"/>
 
                     <div>
@@ -42,13 +42,13 @@ function HeaderMovie (props)  {
                                 <Icon icon="material-symbols:share" className="text-[46.5px]" />
                                 Share
                             </button>
-                            <span className="">
+                            <button className="">
                                 Rate The Show
-                                <span className="flex items-center ms-2">
+                                <span className="flex items-center">
                                     <Icon icon="material-symbols:star" className="text-[33.56px]"/>
                                     <span className="text-3xl">{props.rate}</span>
                                 </span>
-                            </span>
+                            </button>
                             <button className="border-2 border-primary rounded-full bg-darkness mt-9 uppercase flex items-center px-3 py-2 hover:bg-primary transition w-[131px] h-10 mb-9">
                                 <Icon icon="ph:play-fill" /> <span className="ms-2">play now</span>
                             </button>
@@ -64,6 +64,6 @@ function HeaderMovie (props)  {
     )
 }
 
-export default HeaderMovie
+export default Header
 
 

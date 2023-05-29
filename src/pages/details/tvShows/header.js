@@ -9,11 +9,11 @@ function HeaderTv (props)  {
         <header className='w-1440 bg-no-repeat bg-cover text-white backdrop-header bg-darkness pb-24' >
             <Navbar />
             <div className="container">
-                <BackButton />
-                <div className="flex flex-wrap mt-20">
-                    <img src={props.image} alt={props.name} />
+            <BackButton className='mt-6'/>
+                <div className="flex flex-wrap mt-12 gap-x-12">
+                    <img src={props.image} alt={props.name} className="w-[315px]" />
 
-                    <div className="ms-16 md:ms-0">
+                    <div>
                         <h3 className="font-gurajada uppercase tracking-[8.5px] text-secondary text-3xl">{props.status}</h3>
                         <h2 className="text-8xl font-gurajada">{props.name},</h2>
                         <ul className="flex items-center gap-x-3 font-imprima">
@@ -42,13 +42,13 @@ function HeaderTv (props)  {
                                 <Icon icon="material-symbols:share" className="text-[46.5px]" />
                                 Share
                             </button>
-                            <button className="">
+                            <span className="">
                                 Rate The Show
-                                <span className="flex items-center">
+                                <span className="flex items-center ms-2">
                                     <Icon icon="material-symbols:star" className="text-[33.56px]"/>
                                     <span className="text-3xl">{props.rate}</span>
                                 </span>
-                            </button>
+                            </span>
                             <button className="border-2 border-primary rounded-full bg-darkness mt-9 uppercase flex items-center px-3 py-2 hover:bg-primary transition w-[131px] h-10 mb-9">
                                 <Icon icon="ph:play-fill" /> <span className="ms-2">play now</span>
                             </button>

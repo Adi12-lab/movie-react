@@ -36,11 +36,11 @@ const Search = () => {
                         }}>
                             <Navbar />
                             <div className="container">
-                                <BackButton />
+                                <BackButton className='mt-6' />
                                 <h4 className="font-homenaje text-3xl mt-10">
                                     Search "{query}"
                                 </h4>
-                                <div className="flex flex-wrap items-center mt-9 gap-8">
+                                <div className="flex flex-wrap items-center mt-9 gap-8 lg:justify-center">
                                     {
                                         results.map((item, i) => {
                                             const card = <Card
