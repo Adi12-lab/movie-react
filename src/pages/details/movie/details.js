@@ -19,7 +19,6 @@ const MovieDetails = () => {
         })
         // getMovieDetails(id)
     }, [])
-    console.log(imageMovie)
     const baseImgUrl = process.env.REACT_APP_BASEIMGURL;
     
         return(

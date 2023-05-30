@@ -7,15 +7,19 @@ import { useParams } from "react-router-dom"
 import { formatNumber } from "../../../helper"
 
 const TvDetails = () => {
+
     const {id} = useParams()
     const [detailTv, setDetailTv] = useState([])
     useEffect(() => {
         getTvDetails(id).then((result) => {
             setDetailTv(result)
         })
+        
     }, [])
+
     const duration = detailTv.episode_run_time && detailTv.episode_run_time[0];
     const baseImgUrl = process.env.REACT_APP_BASEIMGURL;
+    console.log(detailTv.last_episode_to_air)
     return(
         <>
             <HeaderTv 
@@ -27,9 +31,9 @@ const TvDetails = () => {
             release_date={detailTv.first_air_date}
             rate={formatNumber(detailTv.vote_average)}
             status={detailTv.status}
-            
             />
-
+            {detailTv.last_episode_to_air && <MainTv episode={detailTv.last_episode_to_air} seasons={detailTv.seasons}/>}
+            <Footer />
         </>
     )
 }

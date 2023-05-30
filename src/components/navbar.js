@@ -10,7 +10,7 @@ const Navbar = () => {
     function hamburgerClick() {
         const navMenu = document.querySelector('.nav-menu');
         const navLinks = document.querySelectorAll('.nav-link');
-        navMenu.classList.toggle('md:hidden')
+        navMenu.classList.toggle('lg:hidden')
         navLinks.forEach(function(item) {
             item.classList.toggle('nav-link-breakpoint')
         })
@@ -35,7 +35,7 @@ const Navbar = () => {
                         <h3 className='inline font-frenchCanon text-3xl'>Bajakmovie</h3>
                     </a>
 
-                    <div className='flex items-center px-4 hidden md:block'>
+                    <div className='flex items-center px-4 hidden lg:block'>
                         <button id='hamburger' type='button' className='block' onClick={hamburgerClick}>
                             <span className='hamburger-line'></span>
                             <span className='hamburger-line'></span>
@@ -45,7 +45,7 @@ const Navbar = () => {
 
                     {/* Yang bawah ini disembunyikan terlebih dahulu */}
 
-                    <nav className='grow flex items-center z-10 nav-menu md:hidden md:absolute md:right-4 md:top-20 md:w-2/3 md:max-w-lg md:rounded-lg md:py-8 md:bg-dark md:flex-col '>
+                    <nav className='grow flex items-center z-10 nav-menu lg:hidden lg:absolute lg:right-4 lg:top-20 lg:w-2/3 lg:max-w-lg lg:rounded-lg lg:py-8 lg:bg-dark lg:flex-col '>
                         <NavLink to='/' className={({ isActive }) => `nav-link ${isActive ? 'text-primary' : ''}`}>Home</NavLink>
                         <NavLink to='/movies' className={({ isActive }) => `nav-link ${isActive ? 'text-primary' : ''}`}>Movies</NavLink>
                         <NavLink to='/tv-shows' className={({ isActive }) => `nav-link ${isActive ? 'text-primary' : ''}`}>Tv Show</NavLink>
@@ -55,7 +55,7 @@ const Navbar = () => {
                         </button>
 
                         {/* Span search */}
-                        <span className='bg-dark p-4 font-imprima rounded-md absolute right-5 top-14 hidden form-search md:top-64'>
+                        <span className='bg-dark p-4 font-imprima rounded-md absolute right-5 top-14 hidden form-search lg:top-64'>
                             <input className='border-2 border-secondary bg-dark px-4 py-2 uppercase w-72 tracking-[2px]' ref={dataSearch} placeholder='Cari film kamu'/>
                             <button className='bg-primary px-4 py-2 text-black font-bold uppercase ms-4 tracking-[2px]' onClick={handleSearchClick}>cari</button>
                         </span>

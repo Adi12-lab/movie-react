@@ -6,12 +6,12 @@ function HeaderTv (props)  {
     const genres = props.genres || []; // Tetapkan genres sebagai array kosong jika props.genres tidak terdefinisi
 
     return (
-        <header className='w-1440 bg-no-repeat bg-cover text-white backdrop-header bg-darkness pb-24' >
+        <header className='w-1440 bg-no-repeat bg-cover text-white backdrop-header pb-24' style={{backgroundImage: `url('/img/darkBackground.jpg')`}}>
             <Navbar />
             <div className="container">
             <BackButton className='mt-6'/>
                 <div className="flex flex-wrap mt-12 gap-x-12">
-                    <img src={props.image} alt={props.name} className="w-[315px]" />
+                    <img src={props.image} alt={props.name} className="w-[330px]" />
 
                     <div>
                         <h3 className="font-gurajada uppercase tracking-[8.5px] text-secondary text-3xl">{props.status}</h3>

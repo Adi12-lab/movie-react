@@ -44,8 +44,13 @@ export const getTvAiring = async () => {
     const tv = await axios.get(`${baseUrl}/tv/airing_today?api_key=${apiKey}`)
     return tv.data.results
 }
+
 export const getTvDetails = async(id) => {
     const tv = await axios.get(`${baseUrl}/tv/${id}?api_key=${apiKey}`)
+    return tv.data
+}
+export const getSeason = async(id, number) => {
+    const tv = await axios.get(`${baseUrl}/tv/${id}/season/${number}?api_key=${apiKey}`)
     return tv.data
 }
 

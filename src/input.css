@@ -14,3 +14,7 @@
 .nav-link-breakpoint {
     @apply py-2 pl-3 pr-4 w-full md:border-0;
 }
+.bg-grad {
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,0.35906862745098034) 0%, rgba(13,12,15,1) 88%, rgba(13,12,15,1) 100%);
+}

@@ -19,10 +19,9 @@ const Search = () => {
         }).finally(() => {
             setIsLoading(false)
         })
-   
+    return () => searchMulti()
 
     }, [query])
-    console.log(results)
     const baseImgUrl = process.env.REACT_APP_BASEIMGURL;
     return (
         <>{
