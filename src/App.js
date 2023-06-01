@@ -8,6 +8,7 @@ import Login from './pages/login/login';
 import Search from './pages/search';
 import './input.css'
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/dashboard';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/tv-shows/details/:id' element={<TvDetails />} />
         <Route path='/search'element={<Search />} />
         <Route path='/login' element={<Login />}/>
+        <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
     </Router>
   );

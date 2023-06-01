@@ -1,5 +1,6 @@
 import Vector from '../../assets/Vector.png';
 import BackButton from '../../components/backButton';
+import PasswordInput from '../../components/passwordInput';
 
 const Login = () => {
     return (
@@ -20,11 +21,11 @@ const Login = () => {
 
                             <div className="mt-6">
                                 <label className="block w-full mb-3">Username</label>
-                                <input className='border-2 border-secondary bg-dark px-4 py-2 w-full rounded-lg focus:outline-none' autoFocus/>
+                                <input className='border-2 border-secondary bg-dark px-4 py-2 w-full rounded-lg focus:outline-none tracking-[1.2px]' autoFocus/>
                             </div>
                             <div className="mt-6">
                                 <label className="block w-full mb-3">Password</label>
-                                <input className='border-2 border-secondary bg-dark px-4 py-2 w-full rounded-lg tracking-[3px] focus:outline-none' type="password"/>
+                                <PasswordInput className='border-2 border-secondary bg-dark px-4 py-2 w-full rounded-lg focus:outline-none tracking-[1.2px]' />
                             </div>
                             <div className="mt-10">
                                 <button className="bg-primary text-black w-full text-[28px] font-gurajada rounded-lg">Sign in</button>
