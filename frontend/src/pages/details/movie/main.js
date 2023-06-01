@@ -22,7 +22,7 @@ function MainMovie({images}) {
                             type: 'slide'
                         }}>
                             {
-                                images.map((item, i) => <SplideSlide key={i}> <img src={`${baseImgUrl}/${item.file_path}`}/></SplideSlide>)
+                                images.map((item, i) => <SplideSlide key={i}> <img src={`${baseImgUrl}/${item.file_path}`} alt={item.file_path}/></SplideSlide>)
                             }
                             
                         </Splide>

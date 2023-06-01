@@ -1,6 +1,6 @@
 import Vector from '../assets/Vector.png'
 import { Search } from 'feather-icons-react'
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useNavigate} from 'react-router-dom'
 import { useRef } from 'react'
 
 

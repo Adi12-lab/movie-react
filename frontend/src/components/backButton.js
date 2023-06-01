@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const BackButton = ({className}) => {
     const navigate = useNavigate()

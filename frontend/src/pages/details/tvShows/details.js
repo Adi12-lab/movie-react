@@ -15,7 +15,7 @@ const TvDetails = () => {
             setDetailTv(result)
         })
         
-    }, [])
+    }, [id])
 
     const duration = detailTv.episode_run_time && detailTv.episode_run_time[0];
     const baseImgUrl = process.env.REACT_APP_BASEIMGURL;

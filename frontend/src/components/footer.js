@@ -1,4 +1,4 @@
-
+import { NavLink } from "react-router-dom";
 const Footer = () => {
     return (
         <footer className="bg-[#1E1E1E] py-16 text-white font-imprima">
@@ -10,16 +10,16 @@ const Footer = () => {
                     <nav className="mx-auto">
                         <ul className="flex">
                             <li>
-                                <a className='border-r border-gray px-9 cursor-pointer hover:text-primary'>Home</a>
+                                <NavLink to='/home' className='border-r border-gray px-9 cursor-pointer hover:text-primary'>Home</NavLink>
                             </li>
                             <li>
-                                <a className='border-r border-gray px-9 cursor-pointer hover:text-primary'>Movie</a>
+                                <NavLink to='/movies' className='border-r border-gray px-9 cursor-pointer hover:text-primary'>Movie</NavLink>
                             </li>
                             <li>
-                                <a className='border-r border-gray px-9 cursor-pointer hover:text-primary'>Tv Show</a>
+                                <NavLink to='/tv-shows' className='border-r border-gray px-9 cursor-pointer hover:text-primary'>Tv Show</NavLink>
                             </li>
                             <li>
-                                <a className='px-9 cursor-pointer hover:text-primary'>Premium</a>
+                                <NavLink to='/premium' className='px-9 cursor-pointer hover:text-primary'>Premium</NavLink>
                             </li>
                         </ul>
                     </nav>
