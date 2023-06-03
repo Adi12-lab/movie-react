@@ -10,7 +10,7 @@ function HeaderTv (props)  {
             <Navbar />
             <div className="container">
             <BackButton className='mt-6'/>
-                <div className="flex flex-wrap mt-12 gap-x-12">
+                <div className="flex mt-12 gap-x-12">
                     <img src={props.image} alt={props.name} className="w-[330px]" />
 
                     <div>

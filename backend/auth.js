@@ -82,6 +82,7 @@ app.post('/login', (req, res) => {
 
                     insertRefreshToken( user.username,refreshToken, (err) => {
                         if (err) {
+                            console.log(err)
                             res.sendStatus(500);
                         } else {
                             res.json({ accessToken, refreshToken }); //dikirim akses token dan refresh tokennya
@@ -96,10 +97,18 @@ app.post('/login', (req, res) => {
 });
 
 app.delete('/logout', (req, res) => {
-    connection.query("DELETE FROM refresh_tokens WHERE token = ?", req.body.token, err => {
+    const authHeader = req.headers.authorization;// jika menggunakan req.body pada endpoint delete, kadang tidak bisa
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.sendStatus(401);
+    }
+
+    connection.query(`DELETE FROM refresh_tokens WHERE token = '${token}'`, err => {
         if (err) {
             res.sendStatus(500)
         } else {
+            // console.log("berhasil logout")
             res.status(204).send("Berhasil logout")
         }
     })

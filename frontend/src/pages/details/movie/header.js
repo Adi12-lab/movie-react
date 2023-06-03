@@ -10,12 +10,12 @@ function HeaderMovie (props)  {
             <Navbar />
             <div className="container">
                 <BackButton className='mt-6'/>
-                <div className="flex flex-wrap gap-x-12 mt-12">
-                    <img src={props.image} alt={props.title} className="w-[315px]"/>
+                <div className="flex gap-x-12 mt-12">
+                    <img src={props.image} alt={props.title} className="w-[350px]"/>
 
-                    <div>
+                    <div> 
                         <h3 className="font-gurajada uppercase tracking-[8.5px] text-secondary text-3xl">{props.status}</h3>
-                        <h2 className="text-8xl font-gurajada">{props.title},</h2>
+                        <h2 className="text-8xl font-gurajada break-words">{props.title},</h2>
                         <ul className="flex items-center gap-x-3 font-imprima">
                             <li className="bg-white text-black px-1">Movie</li>
                             <li className="border px-1">HD</li>

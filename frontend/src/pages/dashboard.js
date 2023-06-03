@@ -3,29 +3,55 @@ import { Icon } from '@iconify/react'
 import PasswordInput from '../components/passwordInput'
 import BackButton from '../components/backButton'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import jwt_decode from 'jwt-decode'
+import { axiosInstance } from '../api'
 const Dashboard = () => {
     const navigate = useNavigate()
+    const [userData, setUserData] = useState([])
 
     useEffect(() => {
-        const accessToken = localStorage.getItem('accessToken');
-        const refreshToken = localStorage.getItem('refreshToken')
+        const accessToken = localStorage.getItem('accessToken') ?? null
+        const refreshToken = localStorage.getItem('refreshToken') ?? null
         if (!accessToken) {
             navigate('/login');
+        } else {
+            const username = jwt_decode(refreshToken).username
+            setUserData({username})
         }
+        
+
     }, [navigate])
+    const handleLogout = async (e) => {
+        try {
+            localStorage.getItem("accessToken")
+            await axiosInstance.delete('/logout', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("refreshToken")}`,
+                },
+            })
+            localStorage.removeItem("accessToken")
+            localStorage.removeItem("refreshToken")
+            navigate("/login")
+        } catch(err) {
+            console.log(err)
+        }
+    }
+    
     return (
         <main className="bg-dark">
-            <div className="container text-white py-24">
+            <div className="container text-white py-20">
+                <button className='bg-red-500 px-3 py-2 rounded-lg mb-7 flex items-center font-imprima text-xl' type='button' onClick={handleLogout} ><Icon icon="solar:logout-2-outline" /> <span className='ms-3'>Logout</span></button>
                 <BackButton />
+                
                 <h1 className='text-6xl font-gurajada text-end mb-4'>Dashboard</h1>
-                <h2 className="font-homenaje text-3xl border-l-4 border-secondary pl-7">Profil saya</h2>
+                <h2 className="font-homenaje text-3xl border-l-4 border-secondary pl-7">Profil {userData.username}</h2>
                 <div className="flex mt-3 gap-x-6">
                     <div className='mt-9 w-[500px]'>
                         <img src={Dc} alt='foto profil.png' className='w-full' />
                         <span className='bg-primary p-4 mt-8 block font-frenchCanon uppercase text-center text-black font-bold border-4 border-orange-600 rounded-full shadow-lg'>Premium</span>
 
-                        <span className='mt-8 block font-frenchCanon uppercase text-center text-primary'>Username</span>
+                 
                     </div>
                     <div className='w-full'>
                         <form className='flex flex-col'>

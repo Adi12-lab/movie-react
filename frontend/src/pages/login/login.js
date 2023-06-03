@@ -4,6 +4,7 @@ import PasswordInput from '../../components/passwordInput';
 import { axiosInstance } from '../../api';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
     const username = useRef(null)
     const password = useRef(null)
@@ -12,8 +13,9 @@ const Login = () => {
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
         if(accessToken) {
-            return navigate('/login')
+            return navigate('/dashboard')
         }
+
     },[])
 
 
