@@ -10,7 +10,6 @@ const Dashboard = () => {
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
         const refreshToken = localStorage.getItem('refreshToken')
-        console.log(accessToken)
         if (!accessToken) {
             navigate('/login');
         }

@@ -9,6 +9,14 @@ const Login = () => {
     const password = useRef(null)
     const navigate = useNavigate()
 
+    useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken');
+        if(accessToken) {
+            return navigate('/login')
+        }
+    },[])
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -17,12 +25,10 @@ const Login = () => {
                 username: username.current.value,
                 password: password.current.value,
             });
-            const { accessToken, refreshToken } = response.data;
+            const { accessToken, refreshToken} = response.data;
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
-            
         
-
             navigate('/dashboard');
         } catch (error) {
             console.error('Login failed:', error.response.data);

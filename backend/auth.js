@@ -80,7 +80,7 @@ app.post('/login', (req, res) => {
                     const accessToken = generateAccessToken({ name: user.username });
                     const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
 
-                    insertRefreshToken(results[0].id, refreshToken, (err) => {
+                    insertRefreshToken( user.username,refreshToken, (err) => {
                         if (err) {
                             res.sendStatus(500);
                         } else {
@@ -125,7 +125,7 @@ const getUserByUsername = (username, callback) => {
     connection.query("SELECT * FROM users WHERE username = ?", username, callback);
 };
 
-const insertRefreshToken = (userId, refreshToken, callback) => {
-    connection.query("INSERT INTO refresh_tokens SET ?", { user_id: userId, token: refreshToken }, callback);
+const insertRefreshToken = (username,refreshToken, callback) => {
+    connection.query("INSERT INTO refresh_tokens SET ?", { username, token: refreshToken }, callback);
 };
 
