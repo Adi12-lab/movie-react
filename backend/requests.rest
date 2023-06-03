@@ -1,5 +1,14 @@
 GET http://localhost:3001/dashboard
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicml6YWwzNiIsImlhdCI6MTY4NTcxMTUyOCwiZXhwIjoxNjg1NzExNTU4fQ.qnoyuyTuAuigFJb3pIeKrN01i4ViH7gKUzpft3tLdcU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicml6YWwzNiIsImlhdCI6MTY4NTc3NDAxNiwiZXhwIjoxNjg1Nzc0MDQ2fQ.8XAp1nYtFpScg6FyE4vpCSzF7xnV42oD0WKhvDGNGfw
+###
+
+POST http://localhost:3002/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpemFsMzYiLCJwYXNzd29yZCI6IjEyMzQzIiwiaWF0IjoxNjg1NzczMzYxfQ.IhqBa1IfOzCGrRztBvZBdSPh_0DrBGbVi1iGuRDVUs0"
+}
+
 
 ###
 POST http://localhost:3002/register
@@ -26,5 +35,5 @@ DELETE http://localhost:3002/logout
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpemFsMzYiLCJwYXNzd29yZCI6IjEyMzQzIiwiaWF0IjoxNjg1NzEwNTgyfQ.QJqUEP7odiwfdj5Lh-TnFBKM5o5HPOI6WFDL-kP2mJg"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpemFsMzYiLCJwYXNzd29yZCI6IjEyMzQzIiwiaWF0IjoxNjg1NzY1NTA2fQ.V1dc-S-Uk6iuZEdFm3ZdbFtUrl0MT7NikdRypl_ZBlk"
 }

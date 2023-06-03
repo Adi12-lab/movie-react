@@ -62,3 +62,41 @@ export const searchMulti = async (query) => {
         return item.media_type !== 'person' && item.poster_path !== null
     })
 }
+
+
+//local api
+
+
+export const axiosInstance = axios.create({
+  baseURL: 'http://localhost:3002',
+});
+
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status === 403 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const refreshToken = localStorage.getItem('refreshToken');
+      try {
+        const response = await axios.post('http://localhost:3002/token', {}, {
+          headers: {
+            'Authorization': `Bearer ${refreshToken}`,
+          },
+        });
+        const newAccessToken = response.data.token;
+        localStorage.setItem('accessToken', newAccessToken);
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
+        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+        return axiosInstance(originalRequest);
+      } catch (err) {
+        console.error('Error refreshing access token:', err.response.data);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+

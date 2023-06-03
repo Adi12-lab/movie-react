@@ -2,7 +2,19 @@ import Dc from '../assets/dc.png'
 import { Icon } from '@iconify/react'
 import PasswordInput from '../components/passwordInput'
 import BackButton from '../components/backButton'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 const Dashboard = () => {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem('refreshToken')
+        console.log(accessToken)
+        if (!accessToken) {
+            navigate('/login');
+        }
+    }, [navigate])
     return (
         <main className="bg-dark">
             <div className="container text-white py-24">
