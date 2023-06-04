@@ -9,6 +9,7 @@ import Search from './pages/search';
 import './input.css'
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/dashboard';
+import Register from './pages/register';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/search'element={<Search />} />
         <Route path='/login' element={<Login />}/>
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </Router>
   );

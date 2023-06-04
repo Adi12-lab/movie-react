@@ -67,9 +67,7 @@ export const searchMulti = async (query) => {
 //local api
 
 
-export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3002',
-});
+export const axiosInstance = axios.create();
 
 axiosInstance.interceptors.response.use(
   (response) => {
@@ -86,7 +84,8 @@ axiosInstance.interceptors.response.use(
             'Authorization': `Bearer ${refreshToken}`,
           },
         });
-        const newAccessToken = response.data.token;
+        const newAccessToken = response.data.accessToken;
+        console.log(newAccessToken)
         localStorage.setItem('accessToken', newAccessToken);
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
         originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;

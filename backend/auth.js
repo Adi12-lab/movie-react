@@ -1,28 +1,14 @@
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const jwt = require("jsonwebtoken")
-const mysql = require('mysql')
-const bcrypt = require('bcrypt')
 const port = 3002
-const connection = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME
-})
+const config = require("./config")
+const { app, jwt, bcrypt, connection } = config
 
-
-connection.connect()
-app.use(cors());
-app.use(express.json())
 
 app.post('/token', (req, res) => {
     try {
-        const refreshToken = req.body.token;
-        if (refreshToken == null) return res.sendStatus(401); //misal user gak mengirim refresh token
-        //pengecekan refresh tokens
+        const authHeader = req.headers['authorization'];
+        const refreshToken = authHeader && authHeader.split(' ')[1];
+        if (refreshToken == null) return res.sendStatus(401);
+        
         connection.query("SELECT token FROM refresh_tokens WHERE token = ?", refreshToken, (err, results) => {
             if (results.length === 0) {
                 return res.sendStatus(403);
@@ -49,7 +35,7 @@ app.post('/register', async (req, res) => {
         const user = { username: req.body.username, password: hashedPassword }
         connection.query("INSERT INTO users SET ?", user, (err) => {
             if (err) {
-                res.status(500).send("Gagal menyimpan ke dalam database")
+                res.status(500).send("Username sudah dipakai")
             } else {
                 res.status(201).send("Registrasi berhasil")
             }
@@ -80,7 +66,7 @@ app.post('/login', (req, res) => {
                     const accessToken = generateAccessToken({ name: user.username });
                     const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
 
-                    insertRefreshToken( user.username,refreshToken, (err) => {
+                    insertRefreshToken(user.username, refreshToken, (err) => {
                         if (err) {
                             console.log(err)
                             res.sendStatus(500);
@@ -95,6 +81,7 @@ app.post('/login', (req, res) => {
         res.status(401).send("User tidak ketemu");
     }
 });
+
 
 app.delete('/logout', (req, res) => {
     const authHeader = req.headers.authorization;// jika menggunakan req.body pada endpoint delete, kadang tidak bisa
@@ -134,7 +121,7 @@ const getUserByUsername = (username, callback) => {
     connection.query("SELECT * FROM users WHERE username = ?", username, callback);
 };
 
-const insertRefreshToken = (username,refreshToken, callback) => {
+const insertRefreshToken = (username, refreshToken, callback) => {
     connection.query("INSERT INTO refresh_tokens SET ?", { username, token: refreshToken }, callback);
 };
 

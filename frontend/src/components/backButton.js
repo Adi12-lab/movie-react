@@ -1,10 +1,12 @@
 import { Icon } from '@iconify/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const BackButton = ({className}) => {
-    const navigate = useNavigate()
+   const navigate = useNavigate()
+
     function goBack() {
-        navigate(-1)
+       navigate(-1)
+      
     }
     return (
         <button className={`text-lg flex items-center font-imprima text-white ${className}`}>

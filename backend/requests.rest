@@ -2,12 +2,19 @@ GET http://localhost:3001/dashboard
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODU3ODU3NzAsImV4cCI6MTY4NTc4NTgwMH0.AdTgVaHdFvlmJaysJPkR9jCgv1Nn2ewl0WxwDREUmHA
 ###
 
-POST http://localhost:3002/token
+GET http://localhost:3001/getProfile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODU4NTg0NDksImV4cCI6MTY4NTg1ODQ3OX0.eHl9PC2A-OAWshFz2H_IQq0FN1Ad1ikK1D57Qc2jgTs
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpemFsMzYiLCJwYXNzd29yZCI6IjEyMzQzIiwiaWF0IjoxNjg1Nzg1NzA2fQ.S_3UiX1itlMofvMpx5wR3nAkpZnNij-z-6OIpfes6Aw"
+    "username": "rizal36"
 }
+
+###
+
+
+POST http://localhost:3002/token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpemFsMzYiLCJwYXNzd29yZCI6IjEyMzQzIiwiaWF0IjoxNjg1ODcyMDExfQ.oliukHPsYIoyIjJ4MxxKREMjLSJ-MvZyRnzSQ2LqL9k
 
 
 ###

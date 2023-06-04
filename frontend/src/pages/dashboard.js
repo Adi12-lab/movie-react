@@ -2,14 +2,27 @@ import Dc from '../assets/dc.png'
 import { Icon } from '@iconify/react'
 import PasswordInput from '../components/passwordInput'
 import BackButton from '../components/backButton'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 import { axiosInstance } from '../api'
+
 const Dashboard = () => {
     const navigate = useNavigate()
+    const location = useLocation()
     const [userData, setUserData] = useState([])
-
+    const getProfile = async (accessToken, username) => {
+        const result = await axiosInstance.get("http://localhost:3001/getProfile", {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            params: {
+                username
+            }
+        });
+        return result;
+    };
+    
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken') ?? null
         const refreshToken = localStorage.getItem('refreshToken') ?? null
@@ -17,15 +30,16 @@ const Dashboard = () => {
             navigate('/login');
         } else {
             const username = jwt_decode(refreshToken).username
-            setUserData({username})
+            getProfile(accessToken,username).then((result) => {
+                setUserData(result.data[0])
+            })
         }
-        
-
     }, [navigate])
+
     const handleLogout = async (e) => {
         try {
             localStorage.getItem("accessToken")
-            await axiosInstance.delete('/logout', {
+            await axiosInstance.delete('http://localhost:3002/logout', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("refreshToken")}`,
                 },
@@ -37,13 +51,12 @@ const Dashboard = () => {
             console.log(err)
         }
     }
-    
     return (
         <main className="bg-dark">
             <div className="container text-white py-20">
                 <button className='bg-red-500 px-3 py-2 rounded-lg mb-7 flex items-center font-imprima text-xl' type='button' onClick={handleLogout} ><Icon icon="solar:logout-2-outline" /> <span className='ms-3'>Logout</span></button>
-                <BackButton />
-                
+                <BackButton/>
+
                 <h1 className='text-6xl font-gurajada text-end mb-4'>Dashboard</h1>
                 <h2 className="font-homenaje text-3xl border-l-4 border-secondary pl-7">Profil {userData.username}</h2>
                 <div className="flex mt-3 gap-x-6">
@@ -58,27 +71,27 @@ const Dashboard = () => {
                             <div className="mt-6 grid grid-cols-2 font-imprima gap-6">
                                 <div>
                                     <label className="block w-full mb-3">Nama depan</label>
-                                    <input className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' />
+                                    <input className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' value={userData.first_name} />
                                 </div>
                                 <div>
                                     <label className="block w-full mb-3">Nama belakang</label>
-                                    <input className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' />
+                                    <input className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none'value={userData.last_name} />
                                 </div>
                                 <div>
                                     <label className="block w-full mb-3">Jenis kelamin</label>
                                     <select className="border-2 border-secondary bg-stone-800 px-4 py-[10px] w-full focus:outline-none text-white">
                                         <option></option>
-                                        <option value='L'>Laki - laki</option>
-                                        <option value='P'>Perempuan</option>
+                                        <option value='L' selected={userData.gender === 'L' ? 'selected' : ''}>Laki - laki</option>
+                                        <option value='P' selected={userData.gender === 'P' ? 'selected' : ''}>Perempuan</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label className="block w-full mb-3">No telepon</label>
-                                    <input className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' type='number' />
+                                    <input className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' type='number' value={userData.phone} />
                                 </div>
                                 <div className='col-span-2'>
                                     <label className="block w-full mb-3">Alamat</label>
-                                    <textarea className='w-full border-2 border-secondary bg-stone-800 py-2 focus:outline-none px-4 h-40'></textarea>
+                                    <textarea className='w-full border-2 border-secondary bg-stone-800 py-2 focus:outline-none px-4 h-40' value={userData.address}></textarea>
                                 </div>
                             </div>
                             <button className='bg-primary py-2 px-4 w-[100px] text-black font-gurajada text-3xl mx-auto mt-3 flex items-center'>
