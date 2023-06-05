@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const location = useLocation()
     const username = useRef(null)
     const password = useRef(null)
     const [isError, setIsError] = useState(false)

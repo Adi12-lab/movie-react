@@ -11,10 +11,20 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3001/insertProfile
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRpMTIiLCJpYXQiOjE2ODU5MzUxNDksImV4cCI6MTY4NTkzODc0OX0.b6m9AYDXM8wnD0N5ENj8jJclyCndUsO0OQKyUdRKW7g
+Content-Type: application/json
 
-
+{   "username": "adi12",
+    "first_name": "Ahmad Adi",
+    "last_name": "Iskandar Ubaidah",
+    "phone": "1111111",
+    "gender": "L",
+    "address": "Tompokersan, Lumajang, Jawa Timur"
+}
+###
 POST http://localhost:3002/token
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpemFsMzYiLCJwYXNzd29yZCI6IjEyMzQzIiwiaWF0IjoxNjg1ODcyMDExfQ.oliukHPsYIoyIjJ4MxxKREMjLSJ-MvZyRnzSQ2LqL9k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkaTEyIiwicGFzc3dvcmQiOiIxMjMiLCJpYXQiOjE2ODU5MzUxNDl9.PYjw42_5t5Rt_OwuPqOXCUQOCAhNt2dQoFWVsh7gCbU
 
 
 ###
@@ -32,15 +42,11 @@ POST http://localhost:3002/login
 Content-Type: application/json
 
 {
-    "username": "rizal36",
-    "password": "12343"
+    "username": "adi12",
+    "password": "123"
 }
 
 ###
 
 DELETE http://localhost:3002/logout
-Content-Type: application/json
-
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpemFsMzYiLCJwYXNzd29yZCI6IjEyMzQzIiwiaWF0IjoxNjg1ODAzODU3fQ.6-YjuDap0gGSKi2S5GOVghztYS3mLrQqNcrYfz2FIRk"
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkaTEyIiwicGFzc3dvcmQiOiIxMjMiLCJpYXQiOjE2ODU5MzQ4NzB9.FmMDkI8Unuw_wviyUC9qrKpNgyeLnYQ6R4mrDn1WcAQ

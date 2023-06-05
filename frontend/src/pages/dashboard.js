@@ -2,14 +2,22 @@ import Dc from '../assets/dc.png'
 import { Icon } from '@iconify/react'
 import PasswordInput from '../components/passwordInput'
 import BackButton from '../components/backButton'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import {useNavigate } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 import { axiosInstance } from '../api'
 
 const Dashboard = () => {
     const navigate = useNavigate()
-    const location = useLocation()
+    const first_name = useRef(null)
+    const last_name = useRef(null)
+    const phone = useRef(null)
+    const gender = useRef(null)
+    const address = useRef(null)
+    const accessToken =localStorage &&  localStorage.getItem('accessToken')
+    const refreshToken = localStorage && localStorage.getItem('refreshToken')
+    const username = jwt_decode(refreshToken).username
+
     const [userData, setUserData] = useState([])
     const getProfile = async (accessToken, username) => {
         const result = await axiosInstance.get("http://localhost:3001/getProfile", {
@@ -24,21 +32,18 @@ const Dashboard = () => {
     };
     
     useEffect(() => {
-        const accessToken = localStorage.getItem('accessToken') ?? null
-        const refreshToken = localStorage.getItem('refreshToken') ?? null
         if (!accessToken) {
             navigate('/login');
         } else {
-            const username = jwt_decode(refreshToken).username
+            
             getProfile(accessToken,username).then((result) => {
                 setUserData(result.data[0])
             })
         }
-    }, [navigate])
+    }, [])
 
     const handleLogout = async (e) => {
         try {
-            localStorage.getItem("accessToken")
             await axiosInstance.delete('http://localhost:3002/logout', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("refreshToken")}`,
@@ -51,6 +56,29 @@ const Dashboard = () => {
             console.log(err)
         }
     }
+    const handleSubmit =async (e) => {
+        e.preventDefault()
+    
+        try {
+            await axiosInstance.post("http://localhost:3001/insertProfile", {
+                username,
+                first_name: first_name.current.value,
+                last_name: last_name.current.value,
+                phone: phone.current.value,
+                gender: gender.current.value,
+                address: address.current.value
+            },{
+           
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+
+            })
+        } catch(err) {
+            console.log(err)
+        }
+    } 
+  
     return (
         <main className="bg-dark">
             <div className="container text-white py-20">
@@ -67,19 +95,19 @@ const Dashboard = () => {
                  
                     </div>
                     <div className='w-full'>
-                        <form className='flex flex-col'>
+                        <form className='flex flex-col' onSubmit={handleSubmit}>
                             <div className="mt-6 grid grid-cols-2 font-imprima gap-6">
                                 <div>
                                     <label className="block w-full mb-3">Nama depan</label>
-                                    <input className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' value={userData.first_name} />
+                                    <input ref={first_name} className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' defaultValue={userData.first_name} />
                                 </div>
                                 <div>
                                     <label className="block w-full mb-3">Nama belakang</label>
-                                    <input className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none'value={userData.last_name} />
+                                    <input ref={last_name} className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' defaultValue={userData.last_name} />
                                 </div>
                                 <div>
                                     <label className="block w-full mb-3">Jenis kelamin</label>
-                                    <select className="border-2 border-secondary bg-stone-800 px-4 py-[10px] w-full focus:outline-none text-white">
+                                    <select ref={gender} className="border-2 border-secondary bg-stone-800 px-4 py-[10px] w-full focus:outline-none text-white">
                                         <option></option>
                                         <option value='L' selected={userData.gender === 'L' ? 'selected' : ''}>Laki - laki</option>
                                         <option value='P' selected={userData.gender === 'P' ? 'selected' : ''}>Perempuan</option>
@@ -87,11 +115,11 @@ const Dashboard = () => {
                                 </div>
                                 <div>
                                     <label className="block w-full mb-3">No telepon</label>
-                                    <input className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' type='number' value={userData.phone} />
+                                    <input ref={phone} className='border-2 border-secondary bg-stone-800 px-4 py-2 w-full focus:outline-none' type='number' defaultValue={userData.phone} />
                                 </div>
                                 <div className='col-span-2'>
                                     <label className="block w-full mb-3">Alamat</label>
-                                    <textarea className='w-full border-2 border-secondary bg-stone-800 py-2 focus:outline-none px-4 h-40' value={userData.address}></textarea>
+                                    <textarea ref={address} className='w-full border-2 border-secondary bg-stone-800 py-2 focus:outline-none px-4 h-40' defaultValue={userData.address}></textarea>
                                 </div>
                             </div>
                             <button className='bg-primary py-2 px-4 w-[100px] text-black font-gurajada text-3xl mx-auto mt-3 flex items-center'>

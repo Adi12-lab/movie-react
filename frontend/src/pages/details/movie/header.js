@@ -11,7 +11,7 @@ function HeaderMovie (props)  {
             <div className="container">
                 <BackButton className='mt-6'/>
                 <div className="flex gap-x-12 mt-12">
-                    <img src={props.image} alt={props.title} className="w-[350px]"/>
+                    <img src={props.image} alt={props.title} className="w-[400px]"/>
 
                     <div> 
                         <h3 className="font-gurajada uppercase tracking-[8.5px] text-secondary text-3xl">{props.status}</h3>
