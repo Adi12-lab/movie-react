@@ -66,7 +66,6 @@ export const searchMulti = async (query) => {
 
 //local api
 
-
 export const axiosInstance = axios.create();
 
 axiosInstance.interceptors.response.use(

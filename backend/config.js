@@ -5,6 +5,8 @@ const cors = require('cors')
 const jwt = require("jsonwebtoken")
 const mysql = require('mysql')
 const bcrypt = require('bcrypt')
+const fs = require("node:fs")
+const path = require("path")
 
 const connection = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -15,6 +17,20 @@ const connection = mysql.createConnection({
 
 app.use(cors());
 app.use(express.json())
+app.use("/images",express.static("images"))
+
+const multer = require('multer')
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "images")
+    }, 
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({storage})
 
 connection.connect()
-module.exports = {app, jwt, bcrypt, connection}
+module.exports = {app, jwt, bcrypt, connection, upload, fs, path}

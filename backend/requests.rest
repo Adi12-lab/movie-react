@@ -22,9 +22,22 @@ Content-Type: application/json
     "gender": "L",
     "address": "Tompokersan, Lumajang, Jawa Timur"
 }
+
+###
+POST http://localhost:3001/changePassword
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRpMTIiLCJpYXQiOjE2ODU5NzYxOTMsImV4cCI6MTY4NTk3OTc5M30.N5yh2oaQDjjWfnkVezEnDWAiwHfrJ6Z3Oa5Tz1yZ0PM
+Content-Type: application/json
+
+{
+    "username": "adi12",
+    "old_password": "123",
+    "new_password": "1234"
+}
+
+
 ###
 POST http://localhost:3002/token
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkaTEyIiwicGFzc3dvcmQiOiIxMjMiLCJpYXQiOjE2ODU5MzUxNDl9.PYjw42_5t5Rt_OwuPqOXCUQOCAhNt2dQoFWVsh7gCbU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkaTEyIiwicGFzc3dvcmQiOiIxMjMiLCJpYXQiOjE2ODU5NzQ2MzZ9.E6RnFXvvWNOq7hsnKf6Gsp2RMHm4nv8JzcKd3tg2niI
 
 
 ###
@@ -49,4 +62,4 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3002/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkaTEyIiwicGFzc3dvcmQiOiIxMjMiLCJpYXQiOjE2ODU5MzQ4NzB9.FmMDkI8Unuw_wviyUC9qrKpNgyeLnYQ6R4mrDn1WcAQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkaTEyIiwicGFzc3dvcmQiOiIxMjMiLCJpYXQiOjE2ODU5NzQ2MzZ9.E6RnFXvvWNOq7hsnKf6Gsp2RMHm4nv8JzcKd3tg2niI

@@ -7,13 +7,12 @@ const BackButton = ({ className}) => {
   const location = useLocation();
 
   function goBack() {
-    if(location.pathname === '/dashboard') {
+    if(location.pathname === '/dashboard' || location.pathname === '/login') {
         navigate('/')
     } else {
         navigate(-1)
     }
 }
-
 
   return (
     <button
