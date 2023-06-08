@@ -1,6 +1,6 @@
 import Vector from '../assets/Vector.png'
 import { Search } from 'feather-icons-react'
-import { NavLink, useNavigate, Link} from 'react-router-dom'
+import { NavLink, useNavigate, Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 import { axiosInstance } from '../api'
@@ -16,12 +16,12 @@ const Navbar = () => {
         const navMenu = document.querySelector('.nav-menu');
         const navLinks = document.querySelectorAll('.nav-link');
         navMenu.classList.toggle('lg:hidden')
-        navLinks.forEach(function(item) {
+        navLinks.forEach(function (item) {
             item.classList.toggle('nav-link-breakpoint')
         })
 
     }
-    const getAvatar = async (username, accessToken)=> await axiosInstance.get("http://localhost:3001/getProfile", {
+    const getAvatar = async (username, accessToken) => await axiosInstance.get("http://localhost:3001/getProfile", {
         headers: {
             'Authorization': `Bearer ${accessToken}`
         },
@@ -31,8 +31,8 @@ const Navbar = () => {
     });
 
     useEffect(() => {
-        if(username && accessToken) {
-            getAvatar(username, accessToken).then((result)=> {
+        if (username && accessToken) {
+            getAvatar(username, accessToken).then((result) => {
                 setAvatar(result.data[0].image)
             })
         }
@@ -47,7 +47,7 @@ const Navbar = () => {
     function handleSearchClick() {
         navigate(`/search?q=${dataSearch.current.value}`)
     }
-    
+
 
     return (
         <section className='bg-transparent w-full flex items-center z-10 absolute text-white'>
@@ -55,7 +55,7 @@ const Navbar = () => {
                 <div className='flex items-center justify-between relative'>
 
                     <NavLink to='/' className='flex items-center grow'>
-                        <img src={Vector} className='inline-block w-10 h-10' alt='brand'/>
+                        <img src={Vector} className='inline-block w-10 h-10' alt='brand' />
                         <h3 className='inline font-frenchCanon text-3xl'>Bajakmovie</h3>
                     </NavLink>
 
@@ -79,23 +79,32 @@ const Navbar = () => {
                         </button>
 
                         {/* Span search */}
-                        <span className='bg-dark p-4 font-imprima rounded-md absolute right-5 top-14 hidden form-search lg:top-64'>
-                            <input className='border-2 border-secondary bg-dark px-4 py-2 uppercase w-72 tracking-[2px]' ref={dataSearch} placeholder='Cari film kamu'/>
+                        <div className='bg-dark p-4 font-imprima rounded-md absolute right-5 top-14 hidden form-search lg:top-64'>
+                            <input className='border-2 border-secondary bg-dark px-4 py-2 uppercase w-72 tracking-[2px]' ref={dataSearch} placeholder='Cari film kamu' />
                             <button className='bg-primary px-4 py-2 text-black font-bold uppercase ms-4 tracking-[2px]' onClick={handleSearchClick}>cari</button>
-                        </span>
-                         <span>
-                            {
-                            avatar ? 
+                        </div>
+                        <div>
+                            {avatar ? (
+                                <Link to="/dashboard">
+                                    <button className="w-[37px] h-[37px] rounded-full ms-5 outline outline-1 outline-secondary hover:outline-2 inline-block">
+                                        <img
+                                            src={`http://localhost:3001/images/${avatar}`}
+                                            alt={avatar}
+                                            className="w-full h-full rounded-full object-cover"
+                                        />
+                                    </button>
+                                </Link>
+                            ) : (
+                                <NavLink
+                                    to="/login"
+                                    className="border-2 border-secondary w-24 p-2 rounded-full uppercase ms-6 cursor-pointer font-imprima text-center hover:bg-secondary hover:text-black transition ease-in-out duration-300"
+                                >
+                                    sign in
+                                </NavLink>
+                            )}
+                        </div>
 
-                            <Link to='/dashboard'>
-                                <img src={`http://localhost:3001/images/${avatar}`} alt={avatar} className='w-[45px] h-[45px] rounded-full ms-5 border-2 border-secondary hover:border-4' /> 
-                            </Link>
-                            
-                            
-                            : <NavLink to='/login' className='border-2 border-secondary w-24 p-2 rounded-full uppercase ms-6 cursor-pointer font-imprima text-center hover:bg-secondary hover:text-black transition ease-in-out duration-300 '>sign in</NavLink>
-                            }
-                        </span>
-                        
+
                     </nav>
 
                 </div>

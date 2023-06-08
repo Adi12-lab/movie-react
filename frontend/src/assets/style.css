@@ -781,6 +781,10 @@ video {
   height: 100vh;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -955,6 +959,10 @@ video {
 
 .rounded-md {
   border-radius: 0.375rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
 }
 
 .rounded-bl-md {
@@ -1180,6 +1188,14 @@ video {
   padding-top: 6rem;
 }
 
+.pt-28 {
+  padding-top: 7rem;
+}
+
+.pt-32 {
+  padding-top: 8rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1350,12 +1366,44 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.outline {
+  outline-style: solid;
+}
+
 .outline-2 {
   outline-width: 2px;
 }
 
+.outline-1 {
+  outline-width: 1px;
+}
+
+.outline-4 {
+  outline-width: 4px;
+}
+
+.outline-offset-2 {
+  outline-offset: 2px;
+}
+
+.outline-offset-4 {
+  outline-offset: 4px;
+}
+
 .outline-secondary {
   outline-color: #B0DC00;
+}
+
+.outline-primary {
+  outline-color: #CCFF00;
+}
+
+.outline-yellow-600 {
+  outline-color: #ca8a04;
+}
+
+.outline-red-500 {
+  outline-color: #ef4444;
 }
 
 .drop-shadow-lg {
@@ -1482,6 +1530,22 @@ video {
 
 .hover\:outline-4:hover {
   outline-width: 4px;
+}
+
+.hover\:outline-1:hover {
+  outline-width: 1px;
+}
+
+.hover\:outline-2:hover {
+  outline-width: 2px;
+}
+
+.hover\:outline-offset-4:hover {
+  outline-offset: 4px;
+}
+
+.hover\:outline-offset-2:hover {
+  outline-offset: 2px;
 }
 
 .focus\:outline-none:focus {

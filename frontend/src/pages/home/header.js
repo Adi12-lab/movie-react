@@ -1,5 +1,4 @@
 
-import Navbar from "../../components/navbar"
 import { Icon } from '@iconify/react';
 function Header() {
     return(

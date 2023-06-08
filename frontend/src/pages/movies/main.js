@@ -19,7 +19,7 @@ const Main = () => {
         <main className="text-white bg-cover bg-no-repeat bg-center" style={{
             backgroundImage: `url('/img/mainBackground1.jpg')`,
         }}>
-            <div className="container pt-32">
+            <div className="container pt-32 pb-16">
                 <div className="flex flex-wrap">
                     <h3 className="font-homenaje text-3xl border-l-4 border-secondary pl-6 inline-block">Film terbaik</h3>
                 </div>

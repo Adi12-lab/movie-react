@@ -1,3 +1,5 @@
+
+
 export function formatNumber(number) {
   if (Number.isInteger(number)) {
     return number.toFixed(1); // Mengubah angka bulat menjadi 1 angka di belakang koma
@@ -6,3 +8,6 @@ export function formatNumber(number) {
   }
   return '';
 }
+
+
+
