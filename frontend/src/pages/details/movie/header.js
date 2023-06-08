@@ -1,4 +1,3 @@
-import Navbar from "../../../components/navbar";
 import BackButton from "../../../components/backButton";
 import { Icon } from '@iconify/react';
 
@@ -7,8 +6,8 @@ function HeaderMovie (props)  {
 
     return (
         <header className='w-1440 bg-no-repeat bg-cover text-white backdrop-header pb-24' style={{backgroundImage: `url('/img/darkBackground.jpg')`}}>
-            <Navbar />
-            <div className="container">
+
+            <div className="container pt-32">
                 <BackButton className='mt-6'/>
                 <div className="flex gap-x-12 mt-12">
                     <img src={props.image} alt={props.title} className="w-[400px]"/>

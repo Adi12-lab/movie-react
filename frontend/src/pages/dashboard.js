@@ -44,7 +44,6 @@ const Dashboard = () => {
         if (!accessToken) {
             navigate('/login');
         } else {
-
             getProfile(accessToken, username).then((result) => {
                 setUserData(result.data[0])
             })
@@ -53,11 +52,7 @@ const Dashboard = () => {
 
     const handleLogout = async (e) => {
         try {
-            await axiosInstance.delete('http://localhost:3002/logout', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem("refreshToken")}`,
-                },
-            })
+            await axiosInstance.post('http://localhost:3002/logout', {username})
             localStorage.removeItem("accessToken")
             localStorage.removeItem("refreshToken")
             navigate("/login")

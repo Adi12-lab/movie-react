@@ -63,8 +63,8 @@ app.post('/login', (req, res) => {
                 if (!isPasswordMatch) {
                     res.status(401).send("Password salah");
                 } else {
-                    const accessToken = generateAccessToken({ name: user.username });
-                    const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+                    const accessToken = generateAccessToken({ username: user.username });
+                    const refreshToken = jwt.sign({username: user.username}, process.env.REFRESH_TOKEN_SECRET);
 
                     insertRefreshToken(user.username, refreshToken, (err) => {
                         if (err) {
@@ -83,21 +83,14 @@ app.post('/login', (req, res) => {
 });
 
 
-app.delete('/logout', (req, res) => {
-    const authHeader = req.headers.authorization;// jika menggunakan req.body pada endpoint delete, kadang tidak bisa
-    const token = authHeader && authHeader.split(' ')[1];
+app.post('/logout', (req, res) => {
+    const username = req.body.username;// jika menggunakan req.body pada endpoint delete, kadang tidak bisa
 
-    if (!token) {
-        return res.sendStatus(401);
-    }
-
-    connection.query(`DELETE FROM refresh_tokens WHERE token = '${token}'`, err => {
-        if (err) {
-            res.sendStatus(500)
-        } else {
+    connection.query(`DELETE FROM refresh_tokens WHERE username = '${username}'`, err => {
+        if (err) return res.sendStatus(500)
             // console.log("berhasil logout")
-            res.status(204).send("Berhasil logout")
-        }
+        return res.status(204).send("Berhasil logout")
+        
     })
 })
 

@@ -6,8 +6,8 @@ function Header() {
         <header className="text-white bg-cover bg-no-repeat bg-center" style={{
             backgroundImage: `url('/img/LANDING bg.png')`,
         }}>
-            <Navbar />
-            <div className="container flex h-screen items-center">
+           
+            <div className="container pt-28 flex h-screen items-center">
                 <div className="flex flex-wrap items-center">
                     <div className="w-full px-4 mb-10">
                     <h3 className="font-frenchCanon text-secondary text-3xl tracking-widest">

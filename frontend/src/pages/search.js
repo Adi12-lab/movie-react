@@ -1,5 +1,4 @@
 import Footer from "../components/footer"
-import Navbar from "../components/navbar"
 import BackButton from "../components/backButton"
 import Card from "../components/card"
 import { NavLink, useLocation } from "react-router-dom"
@@ -33,9 +32,9 @@ const Search = () => {
                         <section className="text-white bg-cover bg-no-repeat pb-14" style={{
                             backgroundImage: `url('/img/mainBackground1.jpg')`,
                         }}>
-                            <Navbar />
-                            <div className="container">
-                                <BackButton className='mt-6' />
+
+                            <div className="container pt-32">
+                                <BackButton />
                                 <h4 className="font-homenaje text-3xl mt-10">
                                     Search "{query}"
                                 </h4>

@@ -1,4 +1,3 @@
-import Navbar from "../../components/navbar"
 import Card from "../../components/card"
 import { Splide, SplideSlide } from "@splidejs/react-splide"
 import { useEffect, useState } from "react"
@@ -17,12 +16,11 @@ const Main = () => {
         })
     }, [])
     return (
-        <main className="text-white bg-cover bg-no-repeat pb-14" style={{
+        <main className="text-white bg-cover bg-no-repeat bg-center" style={{
             backgroundImage: `url('/img/mainBackground1.jpg')`,
         }}>
-            <Navbar />
-            <div className="container">
-                <div className="flex flex-wrap mt-16">
+            <div className="container pt-32">
+                <div className="flex flex-wrap">
                     <h3 className="font-homenaje text-3xl border-l-4 border-secondary pl-6 inline-block">Film terbaik</h3>
                 </div>
                 <div className="mt-14 cursor-grabbing">
