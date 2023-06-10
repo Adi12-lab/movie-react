@@ -1,22 +1,23 @@
 import BackButton from "../../../components/backButton";
 import { Icon } from '@iconify/react';
+import PlayButton from "../../../components/playButton";
 
-function HeaderTv (props)  {
+function HeaderMovie (props)  {
     const genres = props.genres || []; // Tetapkan genres sebagai array kosong jika props.genres tidak terdefinisi
 
     return (
         <header className='w-1440 bg-no-repeat bg-cover text-white backdrop-header pb-24' style={{backgroundImage: `url('/img/darkBackground.jpg')`}}>
 
             <div className="container pt-32">
-            <BackButton className='mt-6'/>
-                <div className="flex mt-12 gap-x-12">
-                    <img src={props.image} alt={props.name} className="w-[330px]" />
+                <BackButton className='mt-6'/>
+                <div className="flex gap-x-12 mt-12 lg:block">
+                    <img src={props.image} alt={props.title} className="w-[330px] lg:w-[300px] lg:mx-auto"/>
 
-                    <div>
+                    <div className="lg:mt-4"> 
                         <h3 className="font-gurajada uppercase tracking-[8.5px] text-secondary text-3xl">{props.status}</h3>
-                        <h2 className="text-8xl font-gurajada">{props.name},</h2>
-                        <ul className="flex items-center gap-x-3 font-imprima">
-                            <li className="bg-white text-black px-1">Tv Show</li>
+                        <h2 className="text-8xl font-gurajada break-words lg:text-[64px]">{props.title},</h2>
+                        <ul className="flex items-center gap-x-3 font-imprima flex-wrap gap-y-2 mt-3">
+                            <li className="bg-white text-black px-1">Movie</li>
                             <li className="border px-1">HD</li>
                             <li className="text-xl"> 
                             {
@@ -36,7 +37,7 @@ function HeaderTv (props)  {
                                 </p>
                             </li>
                         </ul>
-                        <div className="w-[484px] h-[112px] bg-[#3F3F3F]/70 mt-6 flex items-center justify-evenly font-imprima rounded-[19.31px] backdrop-blur-[2px]">
+                        <div className="w-[484px] h-[112px] bg-[#3F3F3F]/70 mt-6 flex items-center justify-evenly font-imprima rounded-[19.31px] backdrop-blur-[2px] lg:w-full">
                             <button>
                                 <Icon icon="material-symbols:share" className="text-[46.5px]" />
                                 Share
@@ -48,23 +49,19 @@ function HeaderTv (props)  {
                                     <span className="text-3xl">{props.rate}</span>
                                 </span>
                             </span>
-                            <button className="border-2 border-primary rounded-full bg-darkness mt-9 uppercase flex items-center px-3 py-2 hover:bg-primary transition w-[131px] h-10 mb-9">
-                                <Icon icon="ph:play-fill" /> <span className="ms-2">play now</span>
-                            </button>
+                            <PlayButton className="border-2 border-primary rounded-full bg-darkness mt-9 uppercase flex items-center px-3 py-2 hover:bg-primary transition w-[131px] h-10 mb-9" spanClass='ms-2'/>
                         </div>
-                        <p className="mt-6 font-gurajada text-2xl w-[839.5px] tracking-[0.09em]">
+                        <p className="mt-6 font-gurajada text-2xl w-[839.5px] tracking-[0.09em] lg:w-full">
                         {props.overview}
                         </p>
                     </div>
                 </div>
 
             </div>
-
-            
         </header>
     )
 }
 
-export default HeaderTv
+export default HeaderMovie
 
 

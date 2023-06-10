@@ -1,4 +1,3 @@
-import Footer from "../components/footer"
 import BackButton from "../components/backButton"
 import Card from "../components/card"
 import { NavLink, useLocation } from "react-router-dom"
@@ -56,7 +55,6 @@ const Search = () => {
                                 </div>
                             </div>
                         </section>
-                        <Footer />
                     </>
                 )}
 

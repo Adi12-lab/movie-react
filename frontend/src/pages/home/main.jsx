@@ -83,12 +83,11 @@ function Main() {
                             }
                         </Splide>
                     </div>
-
                 </div>
             </section>
 
             <section className='bg-[#1E1E1E] pt-16'>
-                <div className='container'>
+                <div className='container lg:hidden'>
                     <div className='flex flex-wrap justify-evenly'>
                         <img src={Marvel} alt='marvel'/>
                         <img src={Disney} alt='disney'/>

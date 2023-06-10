@@ -2,18 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .navbar-fixed {
-    @apply fixed z-[9999] bg-slate-700 blur-sm absolute;
+    @apply fixed z-[9999] bg-slate-700 blur-sm;
 }
 .hamburger-line {
-    @apply w-[30px] h-[2px] my-2 block bg-secondary;
+    @apply w-[30px] h-[2px] my-2 block bg-secondary transition duration-150 ease-in-out;
 }
+
+.hamburger-active > span:nth-child(1){
+    @apply origin-top-left rotate-45
+}
+.hamburger-active > span:nth-child(2){
+    @apply scale-0
+}
+.hamburger-active > span:nth-child(3){
+    @apply origin-bottom-left -rotate-45
+}
+
 .nav-link {
-    @apply uppercase border-r border-gray px-9 cursor-pointer transition duration-300 ease-in-out hover:text-primary block;
+    @apply uppercase cursor-pointer font-imprima transition duration-300 ease-in-out px-8 hover:text-primary block lg:border-0 lg:px-0 lg:text-left mb-2 focus:text-primary;
 }
-.nav-link-breakpoint {
-    @apply py-2 pl-3 pr-4 w-full md:border-0;
-}
+
 .bg-grad {
     background: rgb(2,0,36);
     background: linear-gradient(180deg, rgba(2,0,36,0.35906862745098034) 0%, rgba(13,12,15,1) 88%, rgba(13,12,15,1) 100%);

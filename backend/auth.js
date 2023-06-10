@@ -17,7 +17,7 @@ app.post('/token', (req, res) => {
                     if (err) {
                         return res.sendStatus(403);
                     } else {
-                        const accessToken = generateAccessToken({ name: user.name });
+                        const accessToken = generateAccessToken({ username: user.username });
                         res.json({ accessToken: accessToken });
                     }
                 });
@@ -34,11 +34,13 @@ app.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10) //berapa laam mengenkripsi
         const user = { username: req.body.username, password: hashedPassword }
         connection.query("INSERT INTO users SET ?", user, (err) => {
-            if (err) {
-                res.status(500).send("Username sudah dipakai")
-            } else {
-                res.status(201).send("Registrasi berhasil")
-            }
+            if (err) return res.status(403).send("Username sudah dipakai")
+            
+            connection.query("INSERT INTO profile_users SET ? ", {username: user.username} , err => {
+                if(err) return res.sendStatus(500)
+            })
+            return res.status(201).send("Registrasi berhasil")
+            
         })
     } catch {
         app.status(500).send()
@@ -107,7 +109,7 @@ async function comparePassword(password, hashedPassword) {
 }
 
 function generateAccessToken(user) {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '2m' })
 }
 
 const getUserByUsername = (username, callback) => {

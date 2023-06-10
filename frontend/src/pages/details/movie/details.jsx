@@ -1,6 +1,5 @@
 import HeaderMovie from "./header"
 import MainMovie from './main'
-import Footer from '../../../components/footer'
 import { useParams } from "react-router-dom"
 import { useEffect, useState} from "react"
 import { getMovieDetails, getMovieImages} from "../../../api"
@@ -23,6 +22,7 @@ const MovieDetails = () => {
     
         return(
             <>  
+            
                 <HeaderMovie 
                     title={detailMovie.title} 
                     duration={detailMovie.runtime} 
@@ -35,7 +35,7 @@ const MovieDetails = () => {
                     rate={formatNumber(detailMovie.vote_average)}
                     />
                 <MainMovie images={imageMovie}/>
-                <Footer />
+                
     
             </>
         )

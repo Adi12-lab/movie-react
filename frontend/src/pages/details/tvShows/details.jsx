@@ -1,6 +1,5 @@
 import HeaderTv from "./header"
 import MainTv from './main'
-import Footer from '../../../components/footer'
 import { getTvDetails } from "../../../api"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
@@ -33,7 +32,6 @@ const TvDetails = () => {
             status={detailTv.status}
             />
             {detailTv.last_episode_to_air && <MainTv episode={detailTv.last_episode_to_air} seasons={detailTv.seasons}/>}
-            <Footer />
         </>
     )
 }
