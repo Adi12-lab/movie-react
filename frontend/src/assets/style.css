@@ -719,6 +719,10 @@ video {
   margin-top: 2.25rem;
 }
 
+.mt-7 {
+  margin-top: 1.75rem;
+}
+
 .block {
   display: block;
 }
@@ -739,10 +743,6 @@ video {
   display: grid;
 }
 
-.contents {
-  display: contents;
-}
-
 .hidden {
   display: none;
 }
@@ -757,10 +757,6 @@ video {
 
 .h-\[112px\] {
   height: 112px;
-}
-
-.h-\[130px\] {
-  height: 130px;
 }
 
 .h-\[37px\] {
@@ -798,10 +794,6 @@ video {
 
 .w-\[100px\] {
   width: 100px;
-}
-
-.w-\[1130px\] {
-  width: 1130px;
 }
 
 .w-\[131px\] {
@@ -1150,9 +1142,9 @@ video {
   padding-bottom: 5rem;
 }
 
-.py-7 {
-  padding-top: 1.75rem;
-  padding-bottom: 1.75rem;
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .py-8 {
@@ -1267,8 +1259,8 @@ video {
   font-size: 18px;
 }
 
-.text-\[22px\]\/\[25px\] {
-  font-size: 22px;
+.text-\[19px\]\/\[25px\] {
+  font-size: 19px;
   line-height: 25px;
 }
 
@@ -1301,11 +1293,6 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-\[19px\]\/\[25px\] {
-  font-size: 19px;
-  line-height: 25px;
 }
 
 .font-bold {
@@ -1439,6 +1426,10 @@ video {
   transition-duration: 150ms;
 }
 
+.duration-200 {
+  transition-duration: 200ms;
+}
+
 .duration-300 {
   transition-duration: 300ms;
 }
@@ -1457,18 +1448,18 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
 .navbar-fixed {
   position: fixed;
   z-index: 9999;
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
-  --tw-blur: blur(4px);
-  -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-          filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+  /* From https://css.glass */
+  background: rgba(29, 27, 26, 0.67);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .hamburger-line {
@@ -1544,8 +1535,13 @@ input[type=number] {
 }
 
 .bg-grad {
-  background: rgb(2,0,36);
-  background: linear-gradient(180deg, rgba(2,0,36,0.35906862745098034) 0%, rgba(13,12,15,1) 88%, rgba(13,12,15,1) 100%);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 0.35906862745098034) 0%,
+    rgba(13, 12, 15, 1) 88%,
+    rgba(13, 12, 15, 1) 100%
+  );
 }
 
 .hover\:bg-primary:hover {
@@ -1708,16 +1704,5 @@ input[type=number] {
 
   .lg\:text-\[64px\] {
     font-size: 64px;
-  }
-}
-
-@media (max-width: 767px) {
-  .md\:mt-32 {
-    margin-top: 8rem;
-  }
-
-  .md\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
   }
 }

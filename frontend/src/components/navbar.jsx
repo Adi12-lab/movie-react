@@ -18,6 +18,16 @@ const Navbar = () => {
     navMenu.classList.toggle("lg:hidden");
     hamburger.classList.toggle("hamburger-active");
   }
+
+  window.onscroll = () => {
+    const navbar = document.querySelector('.navbar')
+    if(navbar) {
+      const fixedNav = navbar.offsetTop
+      if(window.scrollY > fixedNav) navbar.classList.add('navbar-fixed')
+       else navbar.classList.remove('navbar-fixed')
+    }
+  }
+
   const getAvatar = async (username, accessToken) =>
     await axiosInstance.get("http://localhost:3001/getProfile", {
       headers: {
@@ -45,8 +55,8 @@ const Navbar = () => {
   }
 
   return (
-    <section className="absolute z-10 flex w-full items-center bg-transparent text-white">
-      <div className="container py-7">
+    <section className="absolute z-10 flex w-full items-center bg-transparent text-white navbar transition duration-200 ease-in-out">
+      <div className="container py-5">
         <div className="relative flex items-center justify-between">
           <NavLink to="/" className="flex grow items-center">
             <img src={Vector} className="inline-block h-10 w-10" alt="brand" />

@@ -15,11 +15,9 @@ function Header() {
               Bajakmovie
             </h3>
             <h1 className="mt-4 font-homenaje text-6xl lg:text-5xl">
-              Hiburan <span className="text-secondary">Tanpa Batas</span>
+              Hiburan <span className="text-secondary">Tanpa Batas</span> <br />
             </h1>
-            <h1 className="mt-4 font-homenaje text-6xl lg:text-5xl">
-              Film, Acara TV, & Sebagainya
-            </h1>
+            <h1 className="mt-4 font-homenaje text-6xl lg:text-5xl">Film, Acara TV, & Sebagainya</h1>
             <ul className="mt-4 flex gap-x-6 font-imprima text-white">
               <li className="bg-white px-1 text-black">Movie</li>
               <li className="border px-1">HD</li>
@@ -29,7 +27,10 @@ function Header() {
                 <span className="ms-4">2023</span>
               </li>
             </ul>
-            <PlayButton className="mt-9 flex items-center rounded-full border-2 border-primary bg-darkness p-4 uppercase transition hover:bg-primary" spanClass='ms-4'/>
+            <PlayButton
+              className="mt-9 flex items-center rounded-full border-2 border-primary bg-darkness p-4 uppercase transition hover:bg-primary"
+              spanClass="ms-4"
+            />
           </div>
         </div>
       </div>
@@ -37,5 +38,3 @@ function Header() {
   );
 }
 export default Header;
-
-

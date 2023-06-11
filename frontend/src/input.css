@@ -10,31 +10,41 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 .navbar-fixed {
-    @apply fixed z-[9999] bg-slate-700 blur-sm;
+  @apply fixed z-[9999];
+  /* From https://css.glass */
+  background: rgba(29, 27, 26, 0.67);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 .hamburger-line {
-    @apply w-[30px] h-[2px] my-2 block bg-secondary transition duration-150 ease-in-out;
+  @apply my-2 block h-[2px] w-[30px] bg-secondary transition duration-150 ease-in-out;
 }
 
-.hamburger-active > span:nth-child(1){
-    @apply origin-top-left rotate-45
+.hamburger-active > span:nth-child(1) {
+  @apply origin-top-left rotate-45;
 }
-.hamburger-active > span:nth-child(2){
-    @apply scale-0
+.hamburger-active > span:nth-child(2) {
+  @apply scale-0;
 }
-.hamburger-active > span:nth-child(3){
-    @apply origin-bottom-left -rotate-45
+.hamburger-active > span:nth-child(3) {
+  @apply origin-bottom-left -rotate-45;
 }
 
 .nav-link {
-    @apply uppercase cursor-pointer font-imprima transition duration-300 ease-in-out px-8 hover:text-primary block lg:border-0 lg:px-0 lg:text-left mb-2 focus:text-primary;
+  @apply mb-2 block cursor-pointer px-8 font-imprima uppercase transition duration-300 ease-in-out hover:text-primary focus:text-primary lg:border-0 lg:px-0 lg:text-left;
 }
 
 .bg-grad {
-    background: rgb(2,0,36);
-    background: linear-gradient(180deg, rgba(2,0,36,0.35906862745098034) 0%, rgba(13,12,15,1) 88%, rgba(13,12,15,1) 100%);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 0.35906862745098034) 0%,
+    rgba(13, 12, 15, 1) 88%,
+    rgba(13, 12, 15, 1) 100%
+  );
 }
