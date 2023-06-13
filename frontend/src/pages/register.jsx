@@ -12,23 +12,32 @@ const Register = () => {
   const username = useRef(null);
   const password = useRef(null);
   const confirmPassword = useRef(null);
+  const isLogin = localStorage && localStorage.getItem('accessToken')
+
+  useEffect(() => {
+    if(isLogin) navigate('/dashboard')
+  },[])
 
   const handleSubmit = async () => {
-    setIsError(null)
+    setIsError(null);
     if (password.current.value !== confirmPassword.current.value) {
-      setIsError("Password tidak sama")
-      return
+      setIsError("Password tidak sama");
+      return;
     }
     try {
-        await axiosInstance.post("http://localhost:3002/register", {
+      await axiosInstance.post("http://localhost:3002/register", {
         username: username.current.value,
         password: password.current.value,
       });
-      Swal.fire("Berhasil", "Selamat registrasi anda berhasil, silahkan login", 'success')
-      
+      Swal.fire(
+        "Berhasil",
+        "Selamat registrasi anda berhasil, silahkan login",
+        "success"
+      );
+
       navigate("/login");
-    } catch(err) {
-      setIsError(err.response.data)
+    } catch (err) {
+      setIsError(err.response.data);
     }
   };
   return (
@@ -91,7 +100,10 @@ const Register = () => {
               </button>
               <p className="mt-5 text-green-600">
                 Sudah punya akun ?{" "}
-                <Link to='/login'className="ms-1 cursor-pointer text-emerald-400 hover:underline">
+                <Link
+                  to="/login"
+                  className="ms-1 cursor-pointer text-emerald-400 hover:underline"
+                >
                   Sign in
                 </Link>
               </p>

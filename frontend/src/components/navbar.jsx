@@ -20,13 +20,13 @@ const Navbar = () => {
   }
 
   window.onscroll = () => {
-    const navbar = document.querySelector('.navbar')
-    if(navbar) {
-      const fixedNav = navbar.offsetTop
-      if(window.scrollY > fixedNav) navbar.classList.add('navbar-fixed')
-       else navbar.classList.remove('navbar-fixed')
+    const navbar = document.querySelector(".navbar");
+    if (navbar) {
+      const fixedNav = navbar.offsetTop;
+      if (window.scrollY > fixedNav) navbar.classList.add("navbar-fixed");
+      else navbar.classList.remove("navbar-fixed");
     }
-  }
+  };
 
   const getAvatar = async (username, accessToken) =>
     await axiosInstance.get("http://localhost:3001/getProfile", {
@@ -54,8 +54,9 @@ const Navbar = () => {
     navigate(`/search?q=${dataSearch.current.value}`);
   }
 
+
   return (
-    <section className="absolute z-10 flex w-full items-center bg-transparent text-white navbar transition duration-200 ease-in-out">
+    <section className="navbar absolute z-10 flex w-full items-center bg-transparent text-white transition duration-200 ease-in-out">
       <div className="container py-5">
         <div className="relative flex items-center justify-between">
           <NavLink to="/" className="flex grow items-center">
@@ -80,8 +81,11 @@ const Navbar = () => {
 
           <nav className="nav-menu z-10 flex grow items-center lg:absolute lg:right-4 lg:top-20 lg:hidden lg:w-2/3 lg:max-w-lg lg:flex-col lg:items-start lg:rounded-lg lg:bg-dark lg:py-8 lg:pl-8">
             <NavLink
-              to="/" className={({ isActive }) =>
-                `nav-link border-r border-gray  ${isActive ? "text-primary" : ""}`
+              to="/"
+              className={({ isActive }) =>
+                `nav-link border-r border-gray  ${
+                  isActive ? "text-primary" : ""
+                }`
               }
             >
               Home
@@ -89,7 +93,9 @@ const Navbar = () => {
             <NavLink
               to="/movies"
               className={({ isActive }) =>
-                `nav-link border-r border-gray ${isActive ? "text-primary" : ""}`
+                `nav-link border-r border-gray ${
+                  isActive ? "text-primary" : ""
+                }`
               }
             >
               Movies
@@ -117,10 +123,15 @@ const Navbar = () => {
                 className="w-72 border-2 border-secondary bg-dark px-4 py-2 uppercase tracking-[2px]"
                 ref={dataSearch}
                 placeholder="Cari film kamu"
+                onKeyUp={(event) => {
+                  event.preventDefault()
+                  if(event.key === 'Enter') handleSearchClick()
+                }}
               />
               <button
                 className="ms-4 bg-primary px-4 py-2 font-bold uppercase tracking-[2px] text-black"
                 onClick={handleSearchClick}
+               
               >
                 cari
               </button>

@@ -10,28 +10,13 @@ app.get("/dashboard", authenticateToken, (req, res) => {
 app.post("/insertProfile", authenticateToken,(req,res) => {
     const {username, first_name, last_name, phone, gender, address} = req.body
     console.log(username)
-    connection.query("SELECT * FROM profile_users WHERE username = ?", username, (err, result) => {
-      if(err) return res.sendStatus(500) 
-      else {
-        if(result.length === 0) {
-          //jalankan insert data
-          connection.query("INSERT INTO profile_users SET ? ", req.body, err => {
-            if(err) return res.sendStatus(500)
-            
-            return res.send("Data berhasil diinput")
-          })
-        } else {
-          //jalankan update data
-          connection.query("UPDATE profile_users SET first_name = ?, last_name = ?, phone = ?, gender = ?, address = ? WHERE username = ?",[first_name, last_name, phone, gender, address, username], err => {
-            if(err) return res.status(500).send(err)
-  
-            return res.send("Data berhasil diubah")
-  
-          })
-        }
+    connection.query("UPDATE profile_users SET first_name = ?, last_name = ?, phone = ?, gender = ?, address = ? WHERE username = ?",[first_name, last_name, phone, gender, address, username], err => {
+      if(err) return res.status(500).send(err)
 
-      }
+      return res.sendStatus(201)
+
     })
+   
 })
 
 app.get("/getProfile", authenticateToken, (req, res) => {
@@ -74,28 +59,30 @@ app.post("/changePassword", authenticateToken, (req, res) => {
 
 
 app.post('/upload', upload.single('file'), (req, res) => {
-  const fileName = req.file.filename;
+  const fileName = req.file && req.file.filename;
   const userName = req.body.username;
 
   // Get the old image file name from the database
-  connection.query('SELECT image FROM profile_users WHERE username = ?', [userName], (err, result) => {
-    if (err) return res.sendStatus(500);
-
-    // If there is an old image, delete it from the 'images' folder
-    if (result[0] && result[0].image) {
-      const oldImage = path.join(__dirname, 'images', result[0].image);
-      fs.unlink(oldImage, (err) => {
-        if (err) console.error(`Error deleting old image: ${err}`);
-      });
-    }
-
-    // Update the database with the new image file name
-    connection.query('UPDATE profile_users SET image = ? WHERE username = ?', [fileName, userName], (err) => {
+  if(fileName) {
+    connection.query('SELECT image FROM profile_users WHERE username = ?', [userName], (err, result) => {
       if (err) return res.sendStatus(500);
-
-      return res.sendStatus(201);
+  
+      // If there is an old image, delete it from the 'images' folder
+      if (result[0] && result[0].image) {
+        const oldImage = path.join(__dirname, 'images', result[0].image);
+        fs.unlink(oldImage, (err) => {
+          if (err) console.error(`Error deleting old image: ${err}`);
+        });
+      }
+  
+      // Update the database with the new image file name
+      connection.query('UPDATE profile_users SET image = ? WHERE username = ?', [fileName, userName], (err) => {
+        if (err) return res.sendStatus(500);
+  
+        return res.sendStatus(201);
+      });
     });
-  });
+  }
 });
 
 

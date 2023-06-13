@@ -63,8 +63,9 @@ const Dashboard = () => {
 
   const handleChangeImage = (e) => {
     const previewImage = document.querySelector("#preview-image");
+  
     const file = e.target.files[0];
-    previewImage.src = URL.createObjectURL(file);
+    if(file) previewImage.src = URL.createObjectURL(file);
 
     setUploadedImage(e.target.files[0]);
   };
@@ -194,7 +195,7 @@ const Dashboard = () => {
               />
               <label
                 for="image-upload"
-                className="flex cursor-pointer justify-center rounded-bl-md rounded-br-md bg-blue-600 p-2 text-black"
+                className="flex cursor-pointer justify-center rounded-bl-md rounded-br-md transition duration-150 bg-blue-600 p-2 text-black hover:bg-blue-500 focus:bg-blue-500"
               >
                 <Icon icon="bi:camera-fill" className="text-lg" />
               </label>
