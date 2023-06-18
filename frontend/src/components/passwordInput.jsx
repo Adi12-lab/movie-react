@@ -8,9 +8,16 @@ const PasswordInput = forwardRef(({ className }, ref) => {
   };
   return (
     <div className="relative">
-      <input className={className} type={passwordShown ? "text" : "password"} ref={ref} />
-      <button type="button" className="absolute top-3 right-3">
-        <Icon icon={passwordShown ? "bi:eye-slash-fill" : "mdi:eye"} onClick={togglePassword} />
+      <input
+        className={className}
+        type={passwordShown ? "text" : "password"}
+        ref={ref}
+      />
+      <button type="button" className="absolute right-3 top-3">
+        <Icon
+          icon={passwordShown ? "bi:eye-slash-fill" : "mdi:eye"}
+          onClick={togglePassword}
+        />
       </button>
     </div>
   );

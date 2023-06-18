@@ -8,7 +8,6 @@ const Search = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("q");
-  // let results =useRef([])
   const [results, setResults] = useState([]);
   useEffect(() => {
     searchMulti(query).then((response) => {
@@ -16,18 +15,20 @@ const Search = () => {
     });
     return () => searchMulti();
   }, [query]);
-  const baseImgUrl = process.env.REACT_APP_BASEIMGURL;
+  const baseImgUrl = import.meta.env.VITE_REACT_APP_BASEIMGURL;
   return (
     <>
       <section
-        className="bg-cover bg-no-repeat h-screen text-white"
+        className="bg-cover bg-no-repeat pb-10 text-white"
         style={{
           backgroundImage: `url('/img/mainBackground1.jpg')`,
         }}
       >
         <div className="container pt-32">
           <BackButton />
-          <h4 className="mt-10 font-homenaje text-3xl">Search "{query}"</h4>
+          <h4 className="mt-10 font-homenaje text-3xl">
+            Search &quot;{query}&quot;
+          </h4>
           <div className="mt-9 flex flex-wrap items-center gap-8 lg:justify-center">
             {results.length !== 0 ? (
               results.map((item, i) => {
@@ -50,13 +51,17 @@ const Search = () => {
                   );
 
                 return (
-                  <NavLink to={`/movies/details/${item.id}`}> {card} </NavLink>
+                  <NavLink to={`/movies/details/${item.id}`} key={i}>
+                    {" "}
+                    {card}{" "}
+                  </NavLink>
                 );
               })
             ) : (
-              <div className="flex flex-wrap bg-slate-700">
+              <div className="flex h-screen flex-wrap">
                 <h3 className="mx-auto font-homenaje text-3xl">
-                  Film atau Acara Tv <span className="text-primary">tidak ditemukan</span>
+                  Film atau Acara Tv{" "}
+                  <span className="text-primary">tidak ditemukan</span>
                 </h3>
               </div>
             )}

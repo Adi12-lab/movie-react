@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axiosInstance.post("http://localhost:3002/login", {
+      const response = await axiosInstance.post("/login", {
         username: username.current.value,
         password: password.current.value,
       });

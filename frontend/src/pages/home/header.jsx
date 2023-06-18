@@ -8,7 +8,7 @@ function Header() {
         backgroundImage: `url('/img/LANDING bg.png')`,
       }}
     >
-      <div className="container flex h-screen items-center pt-28">
+      <div className="container flex h-screen items-center pt-28 lg:px-4">
         <div className="flex flex-wrap items-center">
           <div className="mb-10 w-full px-4">
             <h3 className="font-frenchCanon text-3xl tracking-widest text-secondary">

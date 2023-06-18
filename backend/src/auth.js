@@ -1,4 +1,3 @@
-const port = 3002
 const config = require("./config")
 const { app, jwt, bcrypt, connection } = config
 
@@ -97,7 +96,7 @@ app.post('/logout', (req, res) => {
 })
 
 
-app.listen(port, () => { console.log('Autentikasi sedang berjalan di port ' + port) })
+// app.listen(port, () => { console.log('Autentikasi sedang berjalan di port ' + port) })
 
 
 
@@ -120,3 +119,4 @@ const insertRefreshToken = (username, refreshToken, callback) => {
     connection.query("INSERT INTO refresh_tokens SET ?", { username, token: refreshToken }, callback);
 };
 
+module.exports = app

@@ -1,17 +1,17 @@
-import './assets/style.css';
-import Home from "./pages/home/home"
-import Movies from './pages/movies';
-import TvShows from './pages/tvshows';
-import MovieDetails from './pages/details/movie/details';
-import TvDetails from './pages/details/tvShows/details';
-import Login from './pages/login';
-import Search from './pages/search';
-import './input.css'
-import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/dashboard';
-import Register from './pages/register';
-import Navbar from './components/navbar';
-import Footer from './components/footer';
+import "./assets/style.css";
+import Home from "./pages/home/home";
+import Movies from "./pages/movies";
+import TvShows from "./pages/tvshows";
+import MovieDetails from "./pages/details/movie/details";
+import TvDetails from "./pages/details/tvShows/details";
+import Login from "./pages/login";
+import Search from "./pages/search";
+import "./input.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/dashboard";
+import Register from "./pages/register";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -37,7 +37,6 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="register" element={<Register />} />
-       
       </Routes>
     </Router>
   );

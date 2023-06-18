@@ -12,11 +12,11 @@ const Register = () => {
   const username = useRef(null);
   const password = useRef(null);
   const confirmPassword = useRef(null);
-  const isLogin = localStorage && localStorage.getItem('accessToken')
+  const isLogin = localStorage && localStorage.getItem("accessToken");
 
   useEffect(() => {
-    if(isLogin) navigate('/dashboard')
-  },[])
+    if (isLogin) navigate("/dashboard");
+  }, []);
 
   const handleSubmit = async () => {
     setIsError(null);
@@ -25,7 +25,7 @@ const Register = () => {
       return;
     }
     try {
-      await axiosInstance.post("http://localhost:3002/register", {
+      await axiosInstance.post("/register", {
         username: username.current.value,
         password: password.current.value,
       });

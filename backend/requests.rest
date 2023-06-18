@@ -1,5 +1,5 @@
 GET http://localhost:3001/dashboard
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRpMTIiLCJpYXQiOjE2ODYyMDY1NjMsImV4cCI6MTY4NjIxMDE2M30.QpQr3NWqRrQ_ljV-FP2rOtWa9BK53SzoDu4EpkLvzcw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkaTEyIiwiaWF0IjoxNjg3MDIwNDIwLCJleHAiOjE2ODcwMjA0NjV9.IzDXFP_k_AEDdS4xV8qWDdNY8sC04Dao8upLdodtH8Q
 ###
 
 GET http://localhost:3001/getProfile
@@ -36,12 +36,12 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:3002/token
+POST http://localhost:3001/token
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkaTEyIiwicGFzc3dvcmQiOiIxMjMiLCJpYXQiOjE2ODU5NzQ2MzZ9.E6RnFXvvWNOq7hsnKf6Gsp2RMHm4nv8JzcKd3tg2niI
 
 
 ###
-POST http://localhost:3002/register
+POST http://localhost:3001/register
 Content-Type: application/json
 
 {
@@ -51,7 +51,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3002/login
+POST http://localhost:3001/login
 Content-Type: application/json
 
 {
@@ -61,7 +61,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3002/logout
+POST http://localhost:3001/logout
 Content-Type: application/json
 
 {

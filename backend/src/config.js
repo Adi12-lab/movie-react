@@ -17,12 +17,12 @@ const connection = mysql.createConnection({
 
 app.use(cors());
 app.use(express.json())
-app.use("/images",express.static("images"))
+app.use("/images",express.static("./src/images"))
 
 const multer = require('multer')
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "images")
+        cb(null, "./src/images")
     }, 
     filename: (req, file, cb) => {
         console.log(file)

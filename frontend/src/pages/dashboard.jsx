@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { axiosInstance } from "../api";
-import axios from "axios";
 import Swal from "sweetalert2";
 
 const Dashboard = () => {
@@ -29,7 +28,7 @@ const Dashboard = () => {
   //data dari database
   const [userData, setUserData] = useState([]);
   const getProfile = async (accessToken, username) => {
-    const result = await axiosInstance.get("http://localhost:3001/getProfile", {
+    const result = await axiosInstance.get("/getProfile", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -50,9 +49,9 @@ const Dashboard = () => {
     }
   }, [navigate, accessToken, username]);
 
-  const handleLogout = async (e) => {
+  const handleLogout = async () => {
     try {
-      await axiosInstance.post("http://localhost:3002/logout", { username });
+      await axiosInstance.post("/logout", { username });
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       navigate("/login");
@@ -63,9 +62,9 @@ const Dashboard = () => {
 
   const handleChangeImage = (e) => {
     const previewImage = document.querySelector("#preview-image");
-  
+
     const file = e.target.files[0];
-    if(file) previewImage.src = URL.createObjectURL(file);
+    if (file) previewImage.src = URL.createObjectURL(file);
 
     setUploadedImage(e.target.files[0]);
   };
@@ -85,7 +84,7 @@ const Dashboard = () => {
       if (result.isConfirmed) {
         try {
           await axiosInstance.post(
-            "http://localhost:3001/insertProfile",
+            "/insertProfile",
             {
               username,
               first_name: first_name.current.value,
@@ -100,8 +99,8 @@ const Dashboard = () => {
               },
             }
           );
-          axios
-            .post("http://localhost:3001/upload", formData)
+          axiosInstance
+            .post("/upload", formData)
             .then((result) => {
               console.log(result.data);
             })
@@ -134,7 +133,7 @@ const Dashboard = () => {
         }
         try {
           await axiosInstance.post(
-            "http://localhost:3001/changePassword",
+            "/changePassword",
             {
               username,
               old_password: oldPassword.current.value,
@@ -152,7 +151,7 @@ const Dashboard = () => {
             "success"
           );
 
-          await axiosInstance.post("http://localhost:3002/logout", {
+          await axiosInstance.post("/logout", {
             username,
           });
           localStorage.removeItem("accessToken");
@@ -167,7 +166,7 @@ const Dashboard = () => {
 
   return (
     <main className="bg-dark">
-      <div className="container py-20 text-white">
+      <div className="container py-20 text-white lg:px-4">
         <button
           className="mb-7 flex items-center rounded-lg bg-red-500 px-3 py-2 font-imprima text-xl outline outline-2 outline-red-500 hover:outline-offset-4"
           type="button"
@@ -177,7 +176,6 @@ const Dashboard = () => {
           <span className="ms-3">Logout</span>
         </button>
         <BackButton />
-
         <h1 className="mb-4 text-end font-gurajada text-6xl">Dashboard</h1>
         <h2 className="border-l-4 border-secondary pl-7 font-homenaje text-3xl">
           Profil {userData.username}
@@ -194,8 +192,8 @@ const Dashboard = () => {
                 className="w-full"
               />
               <label
-                for="image-upload"
-                className="flex cursor-pointer justify-center rounded-bl-md rounded-br-md transition duration-150 bg-blue-600 p-2 text-black hover:bg-blue-500 focus:bg-blue-500"
+                htmlFor="image-upload"
+                className="flex cursor-pointer justify-center rounded-bl-md rounded-br-md bg-blue-600 p-2 text-black transition duration-150 hover:bg-blue-500 focus:bg-blue-500"
               >
                 <Icon icon="bi:camera-fill" className="text-lg" />
               </label>

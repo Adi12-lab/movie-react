@@ -1,22 +1,21 @@
-import { Icon } from '@iconify/react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Icon } from "@iconify/react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-
-const BackButton = ({ className}) => {
+const BackButton = ({ className }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   function goBack() {
-    if(location.pathname === '/dashboard' || location.pathname === '/login') {
-        navigate('/')
+    if (location.pathname === "/dashboard" || location.pathname === "/login") {
+      navigate("/");
     } else {
-        navigate(-1)
+      navigate(-1);
     }
-}
+  }
 
   return (
     <button
-      className={`text-lg flex items-center font-imprima text-white ${className}`}
+      className={`flex items-center font-imprima text-lg text-white ${className}`}
       onClick={goBack}
     >
       <Icon icon="teenyicons:arrow-left-outline" className="text-4xl" />

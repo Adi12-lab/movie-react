@@ -1,6 +1,6 @@
 import Vector from "../assets/Vector.png";
-import { Search } from "feather-icons-react";
 import { NavLink, useNavigate, Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import { useEffect, useRef, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { axiosInstance } from "../api";
@@ -54,10 +54,9 @@ const Navbar = () => {
     navigate(`/search?q=${dataSearch.current.value}`);
   }
 
-
   return (
     <section className="navbar absolute z-10 flex w-full items-center bg-transparent text-white transition duration-200 ease-in-out">
-      <div className="container py-5">
+      <div className="container py-5 lg:px-4">
         <div className="relative flex items-center justify-between">
           <NavLink to="/" className="flex grow items-center">
             <img src={Vector} className="inline-block h-10 w-10" alt="brand" />
@@ -110,11 +109,11 @@ const Navbar = () => {
             </NavLink>
 
             <button
-              className="ms-auto cursor-pointer border-r border-gray px-9 lg:border-none"
+              className="ms-auto cursor-pointer border-r border-gray px-6 lg:border-none"
               id="search"
               onClick={searchInput}
             >
-              <Search />
+              <Icon icon="material-symbols:search" className="text-4xl" />
             </button>
 
             {/* Span search */}
@@ -124,14 +123,13 @@ const Navbar = () => {
                 ref={dataSearch}
                 placeholder="Cari film kamu"
                 onKeyUp={(event) => {
-                  event.preventDefault()
-                  if(event.key === 'Enter') handleSearchClick()
+                  event.preventDefault();
+                  if (event.key === "Enter") handleSearchClick();
                 }}
               />
               <button
                 className="ms-4 bg-primary px-4 py-2 font-bold uppercase tracking-[2px] text-black"
                 onClick={handleSearchClick}
-               
               >
                 cari
               </button>

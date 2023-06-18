@@ -1,6 +1,6 @@
 const config = require('./config')
 const {app, jwt, bcrypt, connection, upload, fs, path} = config
-const port = 3001
+
 
 
 app.get("/dashboard", authenticateToken, (req, res) => {
@@ -62,14 +62,17 @@ app.post('/upload', upload.single('file'), (req, res) => {
   const fileName = req.file && req.file.filename;
   const userName = req.body.username;
 
+
   // Get the old image file name from the database
   if(fileName) {
+    console.log(fileName)
     connection.query('SELECT image FROM profile_users WHERE username = ?', [userName], (err, result) => {
       if (err) return res.sendStatus(500);
   
       // If there is an old image, delete it from the 'images' folder
       if (result[0] && result[0].image) {
         const oldImage = path.join(__dirname, 'images', result[0].image);
+
         fs.unlink(oldImage, (err) => {
           if (err) console.error(`Error deleting old image: ${err}`);
         });
@@ -87,7 +90,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 
 
 
-app.listen(port, ()=> console.log("Server berjalan di port "+ port))
+// app.listen(port, ()=> console.log("Server berjalan di port "+ port))
 
 //Middleware
 function authenticateToken(req, res, next) {
@@ -110,3 +113,5 @@ function authenticateToken(req, res, next) {
 
     return isMatch;
 }
+
+module.exports = app

@@ -1,12 +1,12 @@
-import Header from './header'
-import Main from './main'
+import Header from "./header";
+import Main from "./main";
 function Home() {
-    return (
-        <>
-            <Header />
-            <Main />
-        </>
-    )
+  return (
+    <>
+      <Header />
+      <Main />
+    </>
+  );
 }
 
-export default Home
+export default Home;
