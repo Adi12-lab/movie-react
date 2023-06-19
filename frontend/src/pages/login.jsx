@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <section
-      className="bg-cover"
+      className="bg-cover h-screen"
       style={{ backgroundImage: "url(/img/loginBackground.jpg)" }}
     >
       <div className="container py-20">
