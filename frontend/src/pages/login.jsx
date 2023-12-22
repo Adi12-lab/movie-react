@@ -16,7 +16,7 @@ const Login = () => {
     if (accessToken) {
       return navigate("/dashboard");
     }
-  }, []);
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <section
-      className="bg-cover h-screen"
+      className="bg-cover bg-center"
       style={{ backgroundImage: "url(/img/loginBackground.jpg)" }}
     >
       <div className="container py-20">

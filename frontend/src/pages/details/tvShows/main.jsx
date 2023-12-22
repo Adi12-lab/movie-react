@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Icon } from "@iconify/react";
+import { ImageWithSkeleton } from "../../../components/image-skeleton";
 const MainTv = ({ episode, seasons }) => {
   const baseImgUrl = import.meta.env.VITE_REACT_APP_BASEIMGURL;
   return (
@@ -15,10 +16,11 @@ const MainTv = ({ episode, seasons }) => {
             className="relative w-[450px] cursor-pointer overflow-hidden rounded-2xl"
             type="button"
           >
-            <img
+            <ImageWithSkeleton
               src={`${baseImgUrl}/${episode.still_path}`}
               alt={episode.id}
               className="w-full"
+              classNameSkeleton="w-[300px] h-[300px]"
             />
             <div className="bg-grad absolute bottom-0 w-full px-7 py-2">
               <h5 className="font-imprima text-[18px]">
@@ -45,9 +47,10 @@ const MainTv = ({ episode, seasons }) => {
                     key={i}
                   >
                     <div className="w-64 lg:mx-auto">
-                      <img
+                      <ImageWithSkeleton
                         src={`${baseImgUrl}${item.poster_path}`}
                         alt={item.name}
+                        classNameSkeleton="w-full h-64"
                       />
                     </div>
                     <div className="w-[840px] lg:w-full">

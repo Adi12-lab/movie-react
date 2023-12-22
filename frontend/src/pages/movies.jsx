@@ -1,8 +1,11 @@
-import Card from "../components/card";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { useEffect, useState } from "react";
-import { getMovieTopRated, getMoviePopular } from "../api";
 import { NavLink } from "react-router-dom";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+
+
+import Card from "../components/card";
+import { getMovieTopRated, getMoviePopular } from "../api";
+
 const Movies = () => {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
