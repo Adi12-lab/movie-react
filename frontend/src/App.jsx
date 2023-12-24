@@ -1,17 +1,20 @@
-import "./assets/style.css";
-import Home from "./pages/home/home";
-import Movies from "./pages/movies";
-import TvShows from "./pages/tvshows";
-import MovieDetails from "./pages/details/movie/details";
-import TvDetails from "./pages/details/tvShows/details";
-import Login from "./pages/login";
-import Search from "./pages/search";
+import { lazy, Suspense } from "react";
 import "./input.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/dashboard";
-import Register from "./pages/register";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import "./assets/style.css";
+import Loading from "./components/loading";
+
+const Home = lazy(() => import("./pages/home/home"));
+const Movies = lazy(() => import("./pages/movies"));
+const TvShows = lazy(() => import("./pages/tvshows"));
+const MovieDetails = lazy(() => import("./pages/details/movie/details"));
+const TvDetails = lazy(() => import("./pages/details/tvShows/details"));
+const Login = lazy(() => import("./pages/login"));
+const Search = lazy(() => import("./pages/search"));
+const Dashboard = lazy(() => import("./pages/dashboard"));
+const Register = lazy(() => import("./pages/register"));
+const Navbar = lazy(() => import("./components/navbar"));
+const Footer = lazy(() => import("./components/footer"));
 
 function App() {
   return (
@@ -23,20 +26,83 @@ function App() {
             <>
               <Navbar />
               <Routes>
-                <Route index element={<Home />} />
-                <Route path="movies" element={<Movies />} />
-                <Route path="tv-shows" element={<TvShows />} />
-                <Route path="movies/details/:id" element={<MovieDetails />} />
-                <Route path="tv-shows/details/:id" element={<TvDetails />} />
-                <Route path="search" element={<Search />} />
+                <Route
+                  index
+                  element={
+                    <Suspense fallback={<Loading />}>
+                      <Home />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="movies"
+                  element={
+                    <Suspense fallback={<Loading />}>
+                      <Movies />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="tv-shows"
+                  element={
+                    <Suspense fallback={<Loading />}>
+                      <TvShows />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="movies/details/:id"
+                  element={
+                    <Suspense fallback={<Loading />}>
+                      <MovieDetails />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="tv-shows/details/:id"
+                  element={
+                    <Suspense fallback={<Loading />}>
+                      <TvDetails />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="search"
+                  element={
+                    <Suspense fallback={<Loading />}>
+                      <Search />
+                    </Suspense>
+                  }
+                />
               </Routes>
               <Footer />
             </>
           }
         />
-        <Route path="login" element={<Login />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="register" element={<Register />} />
+        <Route
+          path="login"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Login />
+            </Suspense>
+          }
+        />
+        <Route
+          path="dashboard"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Dashboard />
+            </Suspense>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Register />
+            </Suspense>
+          }
+        />
       </Routes>
     </Router>
   );

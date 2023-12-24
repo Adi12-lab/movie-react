@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import BackButton from "../../../components/backButton";
 import { Icon } from "@iconify/react";
+import BackButton from "../../../components/backButton";
 import PlayButton from "../../../components/playButton";
+import { ImageWithSkeleton } from "../../../components/image-skeleton";
 
 function HeaderMovie(props) {
   const genres = props.genres || []; // Tetapkan genres sebagai array kosong jika props.genres tidak terdefinisi
@@ -14,10 +15,11 @@ function HeaderMovie(props) {
       <div className="container pt-32 lg:px-4">
         <BackButton className="mt-6" />
         <div className="mt-12 flex gap-x-12 lg:block">
-          <img
+          <ImageWithSkeleton
             src={props.image}
             alt={props.title}
             className="w-[330px] lg:mx-auto lg:w-[300px]"
+            classNameSkeleton="w-[330px] h-[330px] lg:mx-auto lg:w-[300px]"
           />
 
           <div className="lg:mt-4">

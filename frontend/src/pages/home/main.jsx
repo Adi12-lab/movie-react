@@ -8,6 +8,7 @@ import Dc from "../../assets/dc.png";
 import Starwars from "../../assets/starwars.png";
 import { NavLink } from "react-router-dom";
 import "@splidejs/react-splide/css";
+import { ImageWithSkeleton } from "../../components/image-skeleton";
 
 function Main() {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
@@ -85,11 +86,12 @@ function Main() {
                 return (
                   <SplideSlide key={i}>
                     <NavLink to={`/movies/details/${movie.id}`}>
-                      <img
+                      <ImageWithSkeleton
                         src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${
                           movie.poster_path
                         }`}
                         alt={movie.title}
+                        classNameSkeleton="w-[300px] h-[300px]"
                       />
                     </NavLink>
                   </SplideSlide>
@@ -124,11 +126,12 @@ function Main() {
                 return (
                   <SplideSlide key={i}>
                     <NavLink to={`/tv-shows/details/${tv.id}`}>
-                      <img
+                      <ImageWithSkeleton
                         src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${
                           tv.poster_path
                         }`}
                         alt={tv.name}
+                        classNameSkeleton="w-[300px] h-[300px]"
                       />
                     </NavLink>
                   </SplideSlide>

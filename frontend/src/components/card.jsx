@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Icon } from "@iconify/react";
-
+import { ImageWithSkeleton } from "./image-skeleton";
 const Card = (props) => {
   return (
     <>
       <article className={`w-[300px] font-imprima text-white`}>
-        <img
+        <ImageWithSkeleton
           src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${
             props.poster_path
           }`}
           alt={props.title}
           className="mb-7"
+          classNameSkeleton="mb-7 w-[300px] h-[300px]"
         />
         <div className="flex flex-wrap text-lg">
           <h6>{props.title}</h6>

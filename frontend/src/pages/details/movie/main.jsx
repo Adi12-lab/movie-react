@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import {ImageWithSkeleton} from "../../../components/image-skeleton"
 
 import "@splidejs/react-splide/css";
 function MainMovie({ images }) {
@@ -31,9 +32,10 @@ function MainMovie({ images }) {
               {images.map((item, i) => (
                 <SplideSlide key={i}>
                   {" "}
-                  <img
+                  <ImageWithSkeleton
                     src={`${baseImgUrl}/${item.file_path}`}
                     alt={item.file_path}
+                    classNameSkeleton="w-[600px] h-[300px]"
                   />
                 </SplideSlide>
               ))}
